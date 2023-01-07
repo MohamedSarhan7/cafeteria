@@ -1,5 +1,5 @@
 <?php
-require("./env.php");
+// require("./env.php");
 class DB
 {
     public $DATABASE;
@@ -21,16 +21,19 @@ class DB
         $this->connection = new PDO($sql, $this->DATABASE_USERNAME, $this->DATABASE_PASSWORD);
     }
 
-    public function selectAll($tablename)
+    public function selectAll($tablename, $condition = '')
     {
         try {
-            $query = "SELECT * from $tablename  ;";
+            $query = "SELECT * from $tablename where $condition ;";
+            if ($condition == '') {
+                $query = "SELECT * from $tablename  ;";
+            }
 
             $sql = $this->connection->prepare($query);
             $result = $sql->execute();
             $result = $sql->fetchall(PDO::FETCH_ASSOC);
             if (empty($result)) {
-                return "Not found or Empty";
+                return false;
             }
             return $result;
         } catch (Throwable $e) {
@@ -43,12 +46,11 @@ class DB
         $offset = $rows_per_page * ($pagenum - 1);
         try {
             $query = "SELECT * from $tablename LIMIT  $rows_per_page  OFFSET $offset  ;";
-            // echo $query;
             $sql = $this->connection->prepare($query);
             $result = $sql->execute();
             $result = $sql->fetchall(PDO::FETCH_ASSOC);
             if (empty($result)) {
-                return "Not found or Empty";
+                return false;
             }
             return $result;
         } catch (Throwable $e) {
@@ -63,8 +65,7 @@ class DB
             $result = $sql->execute();
             $result = $sql->fetch(PDO::FETCH_ASSOC);
             if (empty($result)) {
-                return
-                    "Not found or Empty";
+                return false;
             }
             return $result;
         } catch (Throwable $e) {
@@ -120,13 +121,13 @@ class DB
     }
 
 
-    public function create_order($user_id, $note, $order_in_arr)
+    public function create_order($user_id, $room, $note, $order_in_arr)
     {
 
 
         try {
             $order = json_encode($order_in_arr);
-            $query = "call create_order($user_id,'$note','$order');";
+            $query = "call create_order($user_id,$room,'$note','$order');";
             $sql = $this->connection->prepare($query);
             $result = $sql->execute();
             return $result;
@@ -144,9 +145,9 @@ class DB
             $str = $this->conditionFun($obj);
             $query = "UPDATE `$table_name` set $str
         WHERE id='$id' ";
-            $sql = ($this->connection)->prepare($query);
-            $result = ($sql)->execute();
-            return true;
+            $sql = $this->connection->prepare($query);
+            $result = $sql->execute();
+            return $result;
         } catch (Exception $e) {
             return  $e->getMessage();
         }
@@ -182,6 +183,53 @@ class DB
     public function cancel_order($id)
     {
         // check order status to make it canceld
+        // check status
+        $order = $this->select_one_row("orders", "id=$id");
+        if (!empty($order)) {
+            if ($order['status'] == "proccessing") {
+                $res = $this->update("orders", $id, ["status" => "canceled"]);
+                return $res;
+            }
+            return false;
+        }
+        return false;
+    }
+    public function change_order_status($id, $status)
+    {
+
+        $valid_status = ['done', 'out_for_delivery'];
+        if (in_array($status, $valid_status)) {
+
+            $order = $this->select_one_row("orders", "id=$id");
+            if (!empty($order)) {
+                if ($order['status'] != "canceled") {
+                    $res = $this->update("orders", $id, ["status" => $status]);
+                    return $res;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public function change_product_status($id, $status)
+    {
+
+        $valid_status = ['avaliable', 'not_avaliable'];
+        if (in_array($status, $valid_status)) {
+
+            $order = $this->select_one_row("product", "id=$id");
+            if (!empty($order)) {
+                if ($order['status'] != $status) {
+                    $res = $this->update("product", $id, ["status" => $status]);
+                    return $res;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
     }
 }
 
@@ -191,18 +239,18 @@ class DB
 
 
 
-$users = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
+// $users = new DB("mysql", "localhost:3307", "cafe", "root", "1234");
 
 
 // //  get all data
 
-// $data = $users->selectAll("user");
+// $data = $users->selectAll("product", "status='avaliable'");
 // echo "<pre>";
 // print_r($data);
 // echo "</pre>";
 
 // select page
-// $data = $users->selectpage("user",2);
+// $data = $users->selectpage("user",3);
 // echo "<pre>";
 // print_r($data);
 // echo "</pre>";
@@ -210,7 +258,7 @@ $users = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $
 
 // // get single row
 
-// $data = $users->select_one_row("user", "namasdae = 'userY'");
+// $data = $users->select_one_row("user", "name = 'userY'");
 // echo "<pre>";
 // print_r($data);
 // echo "</pre>";
@@ -218,19 +266,19 @@ $users = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $
 // // insert
 
 // $result = $users->insert("user", [
-//     "name" => "user123@gmial.com",
+//     "name" => "user123.com",
 //     "password" => "12345678",
 //     "email" => time()."user@gmial.com",
-//     // "avatar"=>"test"
+//     "avatar"=>"test"
 // ]);
 
-// echo gettype($result);
+// // echo gettype($result);
 // echo "<hr><br>insert result:   " . $result;
 
 
 // create_order
-// $result = $users->create_order(7, "test err in prsadasddsadado id", [
-//     ["product_id"=>"44","qty"=>"3"],
+// $result = $users->create_order(3,4 ,"test err in prsadasddsadado id", [
+//     ["product_id"=>"1","qty"=>"3"],
 //     ["product_id" => "2", "qty" => "1"]
 // ]);
 // echo "<hr><br>create order:   " . $result;
@@ -242,7 +290,7 @@ $users = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $
 //     "name" => "mohamed",
 //     "email" => "blabla@m.com"
 //     ],
-    
+
 // );
 // echo "<hr><br>update result:   " . $result;
 
@@ -251,3 +299,18 @@ $users = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $
 // $result = $users->delete("user", 15);
 
 // echo "<hr><br>delete result:   ".$result;
+
+// cancel order
+// $result = $users->cancel_order(2);
+
+// echo "<hr><br>cancel order result:   " . $result;
+
+// change order status
+// $result = $users->change_order_status(3, "out_for_delivery");
+
+// echo "<hr><br>change order result:   " . $result;
+
+// // change order status
+// $result = $users->change_product_status(2, "not_avaliable");
+
+// echo "<hr><br>change product result:   " . $result;
