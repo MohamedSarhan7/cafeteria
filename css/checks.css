@@ -1,0 +1,30 @@
+.date{
+    display: flex;
+    gap: 50px;
+}
+.users-select {
+    padding: 20px;
+    display: flex;
+}
+.users-select{
+    width: 250px;
+    height: 30px;
+}
+.user-order{
+    display: none;
+}
+img{
+    width: 100px;
+    height: 100px;
+}
+.order-details{
+    display: none;
+}
+.main-order-details{
+    display: flex;
+    gap: 30px;
+}
+.active{
+    display: block !important ;
+/* background-color: red; */
+}
