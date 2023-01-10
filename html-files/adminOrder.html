@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/adminOrder.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <ul>
+            <li onclick="Home()">Home</li>
+            <li onclick="Products()">Products</li>
+            <li onclick="Users()">Users</li>
+            <li onclick="Manage()">Manage Orders</li>
+            <li onclick="Checks()">Checks</li>
+        </ul>
+        <img src="../images/user/imgbin_computer-icons-user-profile-avatar-png.png" alt="">
+        <p>Admin</p>
+    </nav>
+
+    <div class="main">
+        <h1>Orders</h1>
+        <div class="container">
+            <form action="../php/db.php" method="post" enctype="multipart/form-data">
+                <table>
+                    <th>Order Date</th>
+                    <th>Name</th>
+                    <th>Room</th>
+                    <th>Action</th>
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </form>
+            <div class="cards">
+                <div></div>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/adminOrder.js"></script>
+</body>
+</html>
