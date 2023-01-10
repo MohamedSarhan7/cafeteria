@@ -24,6 +24,42 @@ function editt(){
     document.getElementById("input2").style.cssText='display: block;';
 }
 
+async function req (p){
+    let sentDATA =new FormData();
+    sentDATA.append("pageno",`${p.innerHTML}`);
+    let res=await fetch ("http://localhost:85/php/getProductByPage.php",{
+        method:"POST",
+        body:sentDATA,
+    })
+    let d=await res .json();
+    console.log(d);
+}
+
+
+async function getNoOfPages()
+{
+    let response=await fetch("http://localhost:85/php/AllProduct.php");
+    let data=await response.json();
+    for (let i=0;i<data;i++)
+    {
+        let p=document.createElement("p");
+        p.innerHTML=i+1;
+        document.querySelector(".changeProducts").append(p);
+        p.addEventListener("click",()=>{
+            req(p);
+            
+            
+        })
+
+    } 
+
+}
+
+getNoOfPages();
+
+
+
+
 
 
 // const person = {
