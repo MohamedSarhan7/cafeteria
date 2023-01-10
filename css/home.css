@@ -8,7 +8,6 @@ body {
     font-size: 1rem;
     font-weight: 700;
     line-height: 1.5;
-    color:#0000;
     text-align: left;
 }
 
@@ -36,7 +35,6 @@ body {
     }
 
     .profile {
-
         padding-right: 2%;
         display: flex;
         flex-wrap: wrap;
@@ -55,5 +53,29 @@ body {
         height:8%;
         border-radius: 50%; 
     }
+
+    .orders {
+        display: flex;
+        width: 100%;
+        padding: 2%;
+    }
+    .orders *
+    {
+        margin: 2%;
+    }
+    .create-order {
+        width: 30%;
+    }
+    .product-img
+    {
+        width: 10%;
+        height: 20%;
+    }
+    .search
+    {
+        padding-left: 80%;
+    }
+
+
 
 
