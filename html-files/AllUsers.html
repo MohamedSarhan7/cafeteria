@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/AllProduct.css">
+</head>
+<body>
+    <form action="../php/AllProduct.php" class="form" method="post" enctype="multipart/form-data">
+    <section id="header">
+        
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="../html-files/home.html">Home</a></li>
+                <p>|</p>
+                <li><a href="../html-files/products.html">Products</a></li>
+                <p>|</p>
+                <li><a href="../html-files/users.html">Users</a></li>
+                <p>|</p>
+                <li><a href="../html-files/manualOrder.html">Manual Order</a></li> 
+                <p>|</p>
+                <li><a href="../html-files/checks.html">Checks</a></li> 
+                
+            </ul>
+        </div>
+        <a href="#" class="admin"><img src="../images/user/admin.png" class="logo" alt=""><p>Admin</p></a>
+    </section>
+
+    <section id="products">
+        <h1>All Users</h1>
+        <li><a href="../html-files/addUser.html">Add Product</a></li>
+    </section>
+
+    <section class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Room</th>
+                    <th>Image</th>
+                    <th>Ext.</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p id="pro">Abdulrahman Hamdy</p>
+                        <input type="text" value="" class="input" id="input1" name="name">
+                    </td>
+
+
+                    <td>
+                        <p id="room">2010</p>
+                        <input type="text" value="" class="input" id="input2" name="Price">
+                    </td>
+
+
+                    <td>
+                        <p><img src="../images/user/1-m.png" alt="" id="image" style="display: block;"></p>
+                        <input type="file" value="" class="input" id="imgInput" style="display: none;" name="img">
+                    </td>
+
+
+                    <td>
+                        <p id="ext">5605</p>
+                        <input type="text" value="" class="input" id="input3" name="Price">
+                    </td>
+
+
+                    <td class="choice">
+                        <a onclick="editt()" class="edit">Edit</a>
+                        <a class="delete">Delete</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="pro">Islam Askar</p>
+                        <input type="text" value="" class="input" id="input4" name="name">
+                    </td>
+
+
+                    <td>
+                        <p id="room">2010</p>
+                        <input type="text" value="" class="input" id="input25" name="Price">
+                    </td>
+
+
+                    <td>
+                        <p><img src="../images/user/2-f.png" alt="" id="image2" style="display: block;"></p>
+                        <input type="file" value="" class="input" id="imgInput2" style="display: none;" name="img2">
+                    </td>
+
+
+                    <td>
+                        <p id="ext">5605</p>
+                        <input type="text" value="" class="input" id="input6" name="Price">
+                    </td>
+
+
+                    <td class="choice">
+                        <a onclick="editt()" class="edit">Edit</a>
+                        <a class="delete">Delete</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="pro">Sayed Fathy</p>
+                        <input type="text" value="" class="input" id="input1" name="name">
+                    </td>
+
+
+                    <td>
+                        <p id="room">2010</p>
+                        <input type="text" value="" class="input" id="input2" name="Price">
+                    </td>
+
+
+                    <td>
+                        <p><img src="../images/user/3-f.png" alt="" id="image" style="display: block;"></p>
+                        <input type="file" value="" class="input" id="imgInput3" style="display: none;" name="img3">
+                    </td>
+
+
+                    <td>
+                        <p id="ext">5605</p>
+                        <input type="text" value="" class="input" id="input2" name="Price">
+                    </td>
+
+
+                    <td class="choice">
+                        <a onclick="editt()" class="edit">Edit</a>
+                        <a class="delete">Delete</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="changeProducts">
+        <p class="leftest"><<</p>
+        <p class="left"><</p>
+        <p class="first">1</p>
+        <p class="second">2</p>
+        <p class="third">3</p>
+        <p class="rightest">...</p>
+        <p class="right">></p>
+        <p class="rightest">>></p>
+    </section>
+
+
+    <footer class="section-p1">
+        <div class="col">
+
+        </div>
+
+        </footer>
+        <span class="up">Up</span>
+    <script src="../JS/AllProduct.js"></script>
+</form>
+</body>
+</html>

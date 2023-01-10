@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/AllUser.css">
+</head>
+<body>
+    <form action="../php/AllProduct.php" class="form" method="post" enctype="multipart/form-data">
+    <section id="header">
+        
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="../html-files/home.html">Home</a></li>
+                <p>|</p>
+                <li><a href="../html-files/products.html">Products</a></li>
+                <p>|</p>
+                <li><a href="../html-files/users.html">Users</a></li>
+                <p>|</p>
+                <li><a href="../html-files/manualOrder.html">Manual Order</a></li> 
+                <p>|</p>
+                <li><a href="../html-files/checks.html">Checks</a></li> 
+                
+            </ul>
+        </div>
+        <a href="#" class="admin"><img src="../images/user/admin.png" class="logo" alt=""><p>Admin</p></a>
+    </section>
+
+    <section id="products">
+        <h1>All Products</h1>
+        <li><a href="../html-files/addProduct.html">Add Product</a></li>
+    </section>
+
+    <section class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p id="pro">Tea</p>
+                        <input type="text" value="" class="input" id="input1" name="product">
+                    </td>
+
+
+                    <td>
+                        <p id="money">5 EGP</p>
+                        <input type="text" value="" class="input" id="input2" name="Price">
+                    </td>
+
+
+                    <td>
+                        <p><img src="../images/product/1.jpg" alt="" id="image" style="display: block;"></p>
+                        <input type="file" value="" class="input" id="imgInput" style="display: none;" name="img">
+                    </td>
+
+
+                    <td class="choice">
+                        <p><a id="ava" onclick="Available()">Available</a>
+                            <select name="available" id="available" class="input">
+                                <option selected disabled>Choose</option>
+                                <option value="available">Available</option>
+                                <option value="unavailable">Unavailable</option>
+                            </select>
+                        <a onclick="editt()" class="edit">Edit</a>
+                        <a class="delete">Delete</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Nescafe</p>
+                        <input type="text" value="">
+                    </td>
+                    <td>
+                        <p>7 EGP</p>
+                        <input type="text" value="">
+                    </td>
+                    <td>
+                        <p><img src="../images/product/2.png" alt=""></p>
+                        <input type="image" value="">
+                    </td>
+                    <td class="choice">
+                        <p><a>available</a><a>edit</a><a>delete</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Coffee</p>
+                        <input type="text" value="">
+                    </td>
+                    <td>
+                        <p>6 EGP</p>
+                        <input type="text" value="">
+                    </td>
+                    <td>
+                        <img src="../images/product/2.png" alt="">
+                        <input type="image" value="">
+                    </td>
+                    <td class="choice">
+                        <p><a>available</a>
+                        <a>edit</a>
+                        <a>delete</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="changeProducts">
+        <p class="leftest"><<</p>
+        <p class="left"><</p>
+        <p class="first">1</p>
+        <p class="second">2</p>
+        <p class="third">3</p>
+        <p class="rightest">...</p>
+        <p class="right">></p>
+        <p class="rightest">>></p>
+    </section>
+
+
+    <footer class="section-p1">
+        <div class="col">
+
+        </div>
+
+        </footer>
+        <span class="up">Up</span>
+    <script src="../JS/AllProduct.js"></script>
+</form>
+</body>
+</html>
