@@ -8,4 +8,8 @@ async function getUserData (){
 }
 getUserData();
 
-
+async function getLatestOrder(){
+    let response=await fetch("http://localhost/php/get-latest-order.php")
+    let data= await response.json();
+    console.log(data);
+}
