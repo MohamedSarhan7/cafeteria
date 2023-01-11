@@ -68,7 +68,7 @@ function removeAllChilds(div) {
 
 function createCard(data) {
     let cartDiv=document.createElement("div");
-    cartDiv.classList.add("product","card","text-center")
+    cartDiv.classList.add("product","card","text-center","col-4")
     let img =document.createElement("img");
     img.classList.add("card-img-top")
     img.setAttribute("src",data.avatar.replace(/['"]+/g, ''));

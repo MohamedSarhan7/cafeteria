@@ -12,7 +12,13 @@
 }
 
 .product {
-    width: 18rem;
+    /* width: 18rem; */
+    padding: 0px 10px;
+}
+
+.product img {
+    height: 200px;
+    width: 100%;
 }
 
 .top-bar  {
@@ -77,6 +83,11 @@
     .search
     {
         padding-left: 80%;
+    }
+
+
+    .all-product {
+        padding: 10px ;
     }
 
 
