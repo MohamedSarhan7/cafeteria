@@ -13,3 +13,5 @@ async function getLatestOrder(){
     let data= await response.json();
     console.log(data);
 }
+
+getLatestOrder();
