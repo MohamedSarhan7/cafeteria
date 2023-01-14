@@ -11,10 +11,17 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="../css/home.css" />
   </head>
   <body>
-    <div class="top-bar">
+    <div class="top-bar container">
       <p class="home">Home</p>
       <span>|</span>
       <p class="my-orders">My Orders</p>
@@ -25,58 +32,37 @@
         <span id="user-name">Name</span>
       </div>
     </div>
-        <div class="search-bar container-fluid d-flex ">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+    <div class="search-bar container d-flex mt-5">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+    </div>
+
+    <div class="container text-center mt-5 ">
+      <div class="row justify-content-center">
+        <div class="col-4 bg-dark text-white pt-3">
+          <div class="row">
+            <p class="product-name col-2">tea</p>
+            <p class="product-price col-2">5</p>
+            <i class="fa-solid fa-plus col-1 add-product"></i>
+            <i class="fa-solid fa-minus col-1 remove-product"></i>
+            <p class="product-price col-4">EGP 25</p>
+            <i class="fa-solid fa-x col-2 delete-order"></i>
+          </div>
         </div>
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-4">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque iure
-                alias soluta repellendus quisquam expedita vero officia? Perspiciatis
-                nesciunt labore laudantium veritatis porro velit mollitia corrupti ex
-                dolorem quod dicta, numquam iusto! Enim, perspiciatis dicta nostrum
-                eligendi distinctio dolor maiores maxime, voluptatibus a d inventore,
-                nam laudantium voluptatum. Et, consequuntur distinctio.
-              </div>
-              <div class="col-8">
-                
-                    <div class="container all-products d-flex flex-wrap justify-content-between">
-                          </div>
-              
-            
+        <div class="col-8">
+          <div
+            class="container all-products row flex-wrap justify-content-center"
+          ></div>
         </div>
-      
-
-
-
-        
       </div>
-        <ul class="change-product pagination justify-content-center">
-        </ul>
-     
+      <ul class="change-product pagination justify-content-center"></ul>
     </div>
 
     <script src="../JS/home.js"></script>
   </body>
 </html>
-
-<!-- <div class="product card text-center">
-    <img src="../images/product/1.jpg" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p>Price</p>
-      <p class="btn btn-dark">Add to Order</p>
-      </div>
-    </div> -->
-
-    <div class="card" style="width: 18rem;">
-      <div style="height: 200px;">
-        <img src="../images/product/9.jpeg" class="card-img-top"  style="height: 100%;" alt="...">
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>  
-

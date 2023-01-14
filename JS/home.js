@@ -70,7 +70,7 @@ function createCard(data) {
     let cartDiv=document.createElement("div");
     cartDiv.classList.add("product","card","text-center","col-4")
     let img =document.createElement("img");
-    img.classList.add("card-img-top")
+    img.classList.add("card-img-top,img-fluid")
     img.setAttribute("src",data.avatar.replace(/['"]+/g, ''));
     cartDiv.appendChild(img);
     let cartBody=document.createElement("div");
@@ -88,3 +88,25 @@ function createCard(data) {
     cartDiv.appendChild(cartBody);
     return cartDiv;
 }
+
+function createOrderCart(product) {
+    let productName=document.createElement("p");
+    productName.classList.add("col-2");
+    productName.innerHTML=product.name;
+    let productQty=document.createElement("p");
+    productQty.classList.add("col-2");
+    productQty.innerHTML=1;
+    let addProduct=document.createElement("i");
+    addProduct.classList.add("fa-solid","fa-plus","col-1");
+    let removeProduct=document.createElement("i");
+    removeProduct.classList.add("fa-solid","fa-minus","col-1");
+    
+    
+}
+
+            <p class="product-name col-2">tea</p>
+            <p class="product-price col-2">5</p>
+            <i class="fa-solid fa-plus col-1 add-product"></i>
+            <i class="fa-solid fa-minus col-1 remove-product"></i>
+            <p class="product-price col-4">EGP 25</p>
+            <i class="fa-solid fa-x col-2 delete-order"></i>
