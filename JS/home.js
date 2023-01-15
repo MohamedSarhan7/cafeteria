@@ -82,6 +82,9 @@ function createCard(data) {
     let addButton=document.createElement("p");
     addButton.innerHTML="Add To Order";
     addButton.classList.add("btn","btn-dark");
+    addButton.addEventListener("click",
+
+    )
     cartBody.appendChild(cartTitle);
     cartBody.appendChild(price);
     cartBody.appendChild(addButton);
@@ -89,7 +92,15 @@ function createCard(data) {
     return cartDiv;
 }
 
+
+
+//create order
+
+actions=[]
+
 function createOrderCart(product) {
+    let productDiv=document.createElement("div");
+    productDiv.classList.add("row");
     let productName=document.createElement("p");
     productName.classList.add("col-2");
     productName.innerHTML=product.name;
@@ -98,15 +109,27 @@ function createOrderCart(product) {
     productQty.innerHTML=1;
     let addProduct=document.createElement("i");
     addProduct.classList.add("fa-solid","fa-plus","col-1");
+    addProduct.addEventListener("click",increaseQty);
     let removeProduct=document.createElement("i");
     removeProduct.classList.add("fa-solid","fa-minus","col-1");
-    
-    
+    removeProduct.addEventListener("click",decreaseQty)
+    let productTotal=document.createElement("p");
+    productTotal.classList.add("col-4");
+    let productCancel=document.createElement("i");
+    productCancel.classList.add("fa-solid","fa-x","col-1");
+    productDiv.appendChild(productName);
+    productDiv.appendChild(productQty);
+    productDiv.appendChild(addProduct);
+    productDiv.appendChild(productTotal);
+    productDiv.appendChild(productCancel);
+    return productDiv;
 }
 
-            <p class="product-name col-2">tea</p>
-            <p class="product-price col-2">5</p>
-            <i class="fa-solid fa-plus col-1 add-product"></i>
-            <i class="fa-solid fa-minus col-1 remove-product"></i>
-            <p class="product-price col-4">EGP 25</p>
-            <i class="fa-solid fa-x col-2 delete-order"></i>
+
+function increaseQty () {
+
+}
+
+function decreaseQty(){
+
+}
