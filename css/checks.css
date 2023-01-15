@@ -1,6 +1,36 @@
+/* nav */
+
+#cafe {
+    font-family: 'La Belle Aurore', 'cursive';
+    font-size: 34px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-right: 100px;
+}
+
+#acc-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 50px !important;
+}
+
+
+/*  ============================= */
+
 .date{
     display: flex;
     gap: 50px;
+}
+/* .sec-two div{ 
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+} */
+#all{
+    width: 50px;
+    height: 30px;
 }
 .users-select {
     padding: 20px;
@@ -22,9 +52,16 @@ img{
 }
 .main-order-details{
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
 }
 .active{
     display: block !important ;
 /* background-color: red; */
+}
+table, td,tr:hover{
+    cursor: pointer;
+}
+a:hover{
+    cursor: pointer !important ;
 }

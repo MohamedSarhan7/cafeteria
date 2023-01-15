@@ -1,18 +1,11 @@
 <?php
-// phpinfo();
+
 // require("../env.php");
 require("../db.php");
-// // stream_resolve_include_path(".:/usr/share/php");
 
-// $db = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
-
-// $res=$db->selectpage("user , orders where user.id=2 and user.id=orders.userid ", 1);
-// echo "<pre>";
-
-// print_r($res);
-// echo "</pre>";
 class checks extends DB
 {
+    protected $rows_per_page = 4;
     public function __construct($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD)
     {
         parent::__construct($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
@@ -20,12 +13,12 @@ class checks extends DB
     //  -- get user and total money he has spent
     public function getusers_pagenated_with_total_money_spended($pageN)
     {
-        $rows_per_page = 5;
-        $offset = $rows_per_page * ($pageN - 1);
+
+        $offset = $this->rows_per_page * ($pageN - 1);
         try {
             $query = "select u.id as'user_id', u.name ,sum(o.total_price) as 'total_money'
                     from user u join orders o  on u.id=o.userid  and o.status='done'
-                    group by o.userid limit $rows_per_page offset $offset  ;";
+                    group by o.userid limit $this->rows_per_page offset $offset  ;";
             $sql = $this->connection->prepare($query);
             $result = $sql->execute();
             $result = $sql->fetchall(PDO::FETCH_ASSOC);
@@ -37,10 +30,10 @@ class checks extends DB
             return $e->getMessage();
         }
     }
-//  get one user with total money
+    //  get one user with total money
     public function get_one_with_total_money_spended($id)
     {
-      
+
         try {
             $query = "select u.id as'user_id', u.name ,sum(o.total_price) as 'total_money'
                     from user u join orders o  on  u.id=$id and u.id=o.userid  and o.status='done'
@@ -59,7 +52,7 @@ class checks extends DB
     // get all users that it's orders status done
     public function getusers_that_order_done()
     {
-        
+
         try {
             $query = "select distinct u.id as'user_id', u.name 
                     from user u join orders o  on u.id=o.userid  and o.status='done' ;";
@@ -115,16 +108,72 @@ class checks extends DB
         }
     }
 
+    public function get_total_number_of_users_pages()
+    {
+
+        try {
+            $query =
+                "select count(distinct u.id) as'total_rows'
+                    from user u join orders o  on u.id=o.userid  and o.status='done' ;";
+            $sql = $this->connection->prepare($query);
+            $result = $sql->execute();
+            $result = $sql->fetchall(PDO::FETCH_ASSOC);
+            if (empty($result)) {
+                
+                return false;
+            }
+            $result = $result[0]['total_rows'] / $this->rows_per_page;
+
+            
+            return ceil($result);
+        } catch (Throwable $e) {
+            return $e->getMessage();
+        }
+    }
+    
+
+    public function get_inValidRooms(){
+
+        try {
+            $query =
+                "select room as'rooms'from user ;";
+            $sql = $this->connection->prepare($query);
+            $result = $sql->execute();
+            $result = $sql->fetchall(PDO::FETCH_ASSOC);
+            if (empty($result)) {
+
+                return false;
+            }
+            // $result = $result[0]['total_rows'] / $this->rows_per_page;
+
+            $rooms = [];
+            foreach($result as $key => $value){
+                // $rooms[] = $value;
+                array_push($rooms, $value['rooms']);
+            }
+            return $rooms;
+        } catch (Throwable $e) {
+            return $e->getMessage();
+        }
+    }
 }
 
 
 // $c = new checks('mysql', 'localhost', 'cafe', "root", "12345678");
-// $res = $c->getusers_pagenated_with_total_money_spended(1);
+
+// $res = $c->get_inValidRooms();
 // echo "<pre>";
 
 // print_r(json_encode($res));
 // echo "</pre>";
 
+
+// $res = $c->get_total_number_of_users_pages();
+// echo "<pre>";
+
+// print_r(json_encode($res));
+// echo "</pre>";
+// echo 6 / 4;
 
 // $res = $c->getall_orders_of_user(2);
 // echo "
@@ -140,4 +189,3 @@ class checks extends DB
 
 // print_r($res);
 // echo "</pre>";
-

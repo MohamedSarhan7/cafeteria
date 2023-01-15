@@ -231,6 +231,31 @@ class DB
         }
         return false;
     }
+    public function get_inValidRooms()
+    {
+
+        try {
+            $query =
+                "select room as'rooms'from user ;";
+            $sql = $this->connection->prepare($query);
+            $result = $sql->execute();
+            $result = $sql->fetchall(PDO::FETCH_ASSOC);
+            if (empty($result)) {
+
+                return false;
+            }
+            // $result = $result[0]['total_rows'] / $this->rows_per_page;
+
+            $rooms = [];
+            foreach ($result as $key => $value) {
+                // $rooms[] = $value;
+                array_push($rooms, $value['rooms']);
+            }
+            return $rooms;
+        } catch (Throwable $e) {
+            return $e->getMessage();
+        }
+    }
 }
 
 

@@ -1,13 +1,13 @@
-// let res = [
-//     { user_id: 2, name: "mohamedsarhan", total_money: "35" },
-//     { user_id: 3, name: "kreem", total_money: "180" },
-//     { user_id: 4, name: "hosaam", total_money: "120" },
-// ];
+//  dom 
+let d1 = document.querySelector(".user-money tbody");
+let orderProducts = document.querySelector(".main-order-details");
+let orderDetail = document.querySelector(".order-details");
+let ordersSecion = document.querySelector(".user-order");
+let secionTwo = document.querySelector(".user-order tbody");
+let selectMenu = document.getElementById("users-select");
+let allBtn = document.getElementById("all");
+const pagenationUL = document.querySelector(".pg");
 
-let res2 = [
-    { order_id: 1, total_price: 20, created_at: "2023-01-08 18:59:24" },
-    { order_id: 2, total_price: 15, created_at: "2023-01-08 19:00:05" },
-];
 
 // =======================================================
 // =========== select menu ======================================
@@ -22,13 +22,12 @@ function createOption(obj) {
 
 
 async function getuserForSelectMenu() {
-    let res = await fetch("http://localhost/cafeteria/php/checks/get_all_users.php", {
+    let res = await fetch("http://localhost/php/checks/get_all_users.php", {
         method: "get",
     });
     let data = await res.json();
     mainGetUserForSelectMenu(data);
 }
-let selectMenu = document.getElementById("users-select");
 function mainGetUserForSelectMenu(data) {
     data.forEach((e) => {
         let item = createOption(e);
@@ -37,31 +36,44 @@ function mainGetUserForSelectMenu(data) {
     })
 
 }
-getuserForSelectMenu();
+
+
 //  or  item event 
-selectMenu.addEventListener("change",()=>{
-    console.log(selectMenu.value);
-    getOneUsersWithTotalMoney(selectMenu.value);
+selectMenu.addEventListener("change", () => {
+    ordersSecion.style.display="none";
+    orderProducts.textContent = '';
+    
+    if (!isNaN(selectMenu.value)){
+console.log(selectMenu.value);
+        getOneUsersWithTotalMoney(selectMenu.value);
+    }
+    
 
 });
 
-// ===========================================
+// ==================================================
 
-//=============================================
-// ============= section 1 ===================
+
+//================================================
+// ============= section 1 =======================
 //  get users with total money
 
+allBtn.addEventListener("click", () => {
+    d1.textContent = '';
+    ordersSecion.classList.remove('active');
+    getAllUsersWithTotalMoney(1);
+})
 async function getOneUsersWithTotalMoney(id) {
     let formdata = new FormData();
     formdata.append("id", id);
-    let res = await fetch("http://localhost/cafeteria/php/checks/get_one_user_with_total_money.php", {
+    let res = await fetch("http://localhost/php/checks/get_one_user_with_total_money.php", {
         method: "post",
         body: formdata,
     });
     let data = await res.json();
-console.log(data);
-d1.textContent='';
-ordersSecion.classList.remove('active');
+    console.log(data);
+    d1.textContent = '';
+    ordersSecion.classList.remove('active');
     mainGetAllUsersWithTotalMoney(data);
 
 }
@@ -69,119 +81,69 @@ ordersSecion.classList.remove('active');
 async function getAllUsersWithTotalMoney(pageNumber) {
     let formdata = new FormData();
     formdata.append("page", pageNumber);
-    let res = await fetch("http://localhost/cafeteria/php/checks/get_all_users_with_total_money.php", {
+    let res = await fetch("http://localhost/php/checks/get_all_users_with_total_money.php", {
         method: "post",
         body: formdata,
     });
     let data = await res.json();
- 
-mainGetAllUsersWithTotalMoney(data);
-  
+d1.textContent='';
+    mainGetAllUsersWithTotalMoney(data);
+
 }
 
 
-function mainGetAllUsersWithTotalMoney(data){
-data.forEach((e)=>{
-    const item = createTRforD1(e);
-    item.addEventListener("click", () => {
-
-        getuserOrders(e.user_id).then(
-
-            resp => {
-                secionTwo.textContent = '';
-                resp.forEach((e) => {
-                    const test = createTRforD2(e);
-                    test.addEventListener("click", () => {
-                        // append order details
-                        orderDetail.style.display = "block";
-
-                    })
-                    secionTwo.appendChild(test);
-                })
-
-            }
-        );
-
-        // const test=createTRforD2(data);
-        // orders.appendChild(test);
-        // ordersSecion.style.display.to
-        ordersSecion.classList.toggle("active");
-        // ordersSecion.style.display = "block";
-    });
-    d1.appendChild(item);
-})
+function mainGetAllUsersWithTotalMoney(data) {
+    data.forEach((e) => {
+        const item = createTRforD1(e);
+        item.addEventListener("click", () => {
+            getuserOrders(e.user_id);
+            ordersSecion.style.display = "block";
+        });
+        d1.appendChild(item);
+    })
 }
-getAllUsersWithTotalMoney(1);
-// let op = document.querySelector(".users");
-// console.log(op[0].value);
-// op[0].addEventListener("change", () => {
-//     console.log(op[0].value);
-// });
+//  page number
+
+
+// ===================================================
+// ============ section 2 ============================
+// get user   orders
 async function getuserOrders(id) {
     let formdata = new FormData();
     formdata.append("id", id);
-    let res = await fetch("http://localhost/cafeteria/php/checks/try.php", {
+    let res = await fetch("http://localhost/php/checks/get_user_orders.php", {
         method: "post",
         body: formdata,
     });
+
     let data = await res.json();
-    let x = data;
 
-    return x;
+    mainGetUserOrder(data);
+
 }
-let orderDetail = document.querySelector(".order-details");
-let ordersSecion = document.querySelector(".user-order");
-let secionTwo = document.querySelector(".user-order tbody");
 
-res2.forEach((element) => {
-    const item = createTRforD2(element);
-    item.addEventListener("click", () => {
-        //  send req to get res then foeach
-        //
-        orderDetail.style.display = "block";
+
+function mainGetUserOrder(arr) {
+    secionTwo.textContent = '';
+    orderProducts.textContent="";
+    // console.log("log");
+    arr.forEach((e) => {
+        const test = createTRforD2(e);
+        test.addEventListener("click", () => {
+            // append order details
+            // console.log(e);
+            // console.log(e.id);
+            orderProducts.textContent='';
+            getOrderDetailes(e.order_id);
+            orderDetail.style.display = "block";
+            
+        })
+        secionTwo.appendChild(test);
     });
-    secionTwo.appendChild(item);
-});
 
-let d1 = document.querySelector(".user-money tbody");
-// console.log(d1);
-// res.forEach((element) => {
-//     const item = createTRforD1(element);
-//     // var id=element.user_id;
-//     item.addEventListener("click", () => {
-
-//         getuserOrders(element.user_id).then(
+}
 
 
-//             resp => {
-//                 secionTwo.textContent = '';
-//                 resp.forEach((e) => {
-//                     const test = createTRforD2(e);
-//                     test.addEventListener("click", () => {
-//                         // append order details
-//                         orderDetail.style.display = "block";
-
-//                     })
-//                     secionTwo.appendChild(test);
-//                 })
-
-//             }
-//         );
-
-//         // const test=createTRforD2(data);
-//         // orders.appendChild(test);
-//         // ordersSecion.style.display.to
-//         ordersSecion.classList.toggle("active");
-//         // ordersSecion.style.display = "block";
-//     });
-//     d1.appendChild(item);
-// });
-
-// user.forEach((element) => {
-//     element.addEventListener("click", () => {
-//         ordersSecion.style.display = "block";
-//     });
-// });
 
 function createTRforD1(obj) {
     const userTD = document.createElement("td");
@@ -206,6 +168,108 @@ function createTRforD2(obj) {
 }
 
 
+// ====================================================
+// ======= section 3===================================
+// get order detailes
 
-// getuserOrders(2);
+function createOrderDetailes(obj) {
+    const card = document.createElement("div");
+    // card.classList.add("d-flex");
+    // card.classList.add("flex-column");
+    card.classList.add("lil-card");
 
+    const productName = document.createElement("p");
+    const img = document.createElement("img");
+    const price = document.createElement("p");
+    const quantity = document.createElement("p");
+
+
+
+    quantity.innerHTML = obj.qty;
+    price.innerText = obj.price;
+    productName.innerText = obj.name;
+    img.setAttribute("src", obj.avatar.replace(/['"]+/g, ''));
+    // console.log(img);
+    // img.setAttribute("src", obj.avatar);
+
+
+    card.appendChild(productName);
+    card.appendChild(img);
+    card.appendChild(price);
+    card.appendChild(quantity);
+    orderProducts.append(card);
+}
+
+
+async function getOrderDetailes(id) {
+    let formdata = new FormData();
+    formdata.append("id", id);
+    let res = await fetch("http://localhost/php/checks/get_order_detailes.php", {
+        method: "post",
+        body: formdata,
+    });
+
+    let data = await res.json();
+    // console.log(data);
+    mainGetOrderDetailes(data);
+
+}
+function mainGetOrderDetailes(arr) {
+
+
+    arr.forEach((e) => {
+        const test = createOrderDetailes(e);
+    
+    });
+}
+
+
+
+// ======================================================
+// ======== filter orders based on date==================
+
+
+// ======================================================
+// ========== pagenation fun ============================
+async function getTotalNumberOfPages(){
+    let res = await fetch("http://localhost/php/checks/get_total_number_of_pages.php");
+    let data= await res.json();
+    mainPagination(data);
+    if(data>=1){
+        getAllUsersWithTotalMoney(1);
+    }
+    
+}
+
+function mainPagination(data){
+   for (let index = 1; index <= data; index++) {
+    createPagination(index);
+    
+   }
+
+}
+
+function createPagination(obj){
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    li.classList.add("page-item");
+    a.classList.add("page-link");
+    a.innerHTML=obj;
+    a.addEventListener("click",()=>{
+        getAllUsersWithTotalMoney(a.innerHTML);
+    })
+    li.appendChild(a);
+    pagenationUL.appendChild(li);
+
+}
+
+// ======================================================
+// =============== get admin details ====================
+
+
+// ======================================================
+// =========== call main Functions ======================
+getTotalNumberOfPages();   // calling the initial page insde if gt 1
+
+
+getuserForSelectMenu();
