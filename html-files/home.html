@@ -33,18 +33,19 @@
       </div>
     </div>
 
-    <div class="search-bar container d-flex mt-5">
+    <div class=" container d-flex mt-5">
       <input
-        class="form-control me-2"
+        class="search-bar form-control col-4"
         type="search"
         placeholder="Search"
         aria-label="Search"
       />
+      <div class="response"></div>
     </div>
 
     <div class="container text-center mt-5 ">
       <div class="row justify-content-center">
-        <div class="col-4 bg-dark text-white pt-3">
+        <div class="col-4 bg-dark text-white pt-3 product-cart">
           <div class="row">
             <p class="product-name col-2">tea</p>
             <p class="product-price col-2">5</p>
@@ -54,14 +55,20 @@
             <i class="fa-solid fa-x col-2 delete-order"></i>
           </div>
         </div>
+        <div class="col-8 products-pagination">
+          <div
+            class="container all-products row flex-wrap justify-content-center">
+        </div>
+         <ul class="change-product pagination justify-content-center mt-5"></ul>        
+        </div>
         <div class="col-8">
           <div
-            class="container all-products row flex-wrap justify-content-center"
-          ></div>
+              class="container searched-products row flex-wrap justify-content-center">
+          </div>
         </div>
       </div>
-      <ul class="change-product pagination justify-content-center"></ul>
-    </div>
+     
+          </div>
 
     <script src="../JS/home.js"></script>
   </body>

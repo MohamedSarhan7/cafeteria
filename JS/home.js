@@ -18,6 +18,9 @@ async function getLatestOrder(){
 getLatestOrder();
 
 
+//flag
+let i=0;
+
 
 // all products pagination
 
@@ -34,11 +37,12 @@ async function getNoOfPages()
         p.innerHTML=i+1;
         document.querySelector(".change-product").append(p);
         p.addEventListener("click",()=>{
-            removeAllChilds(allProductDiv)
+            removeAllChilds(allProductDiv);
             reqPage(p.innerHTML);
         })
     } 
 }
+
 
 
 
@@ -66,6 +70,22 @@ function removeAllChilds(div) {
       }
 }
 
+
+//create order
+
+// function createCartRow(data){
+//     document.querySelector(".product-cart").appendChild(createOrderCart(data));
+// }
+
+// function updateTotal (productTotal,productQty,product){
+//     productTotal.innerHTML=parseInt(productQty.innerHTML)*parseInt(product.price);
+// }
+
+
+
+
+
+
 function createCard(data) {
     let cartDiv=document.createElement("div");
     cartDiv.classList.add("product","card","text-center","col-4")
@@ -82,6 +102,20 @@ function createCard(data) {
     let addButton=document.createElement("p");
     addButton.innerHTML="Add To Order";
     addButton.classList.add("btn","btn-dark");
+    addButton.addEventListener("click",(e)=>{
+        //  if (i==0)
+        //  {
+        
+        //    e.target.classList.add("disabled");
+        //      i=1;
+        //     document.querySelector(".product-cart").appendChild(createOrderCart(data));
+        //   }
+        //  else
+        //  {
+        //      console.log(i);
+        //      console.log("second");
+        //  }
+    })
     cartBody.appendChild(cartTitle);
     cartBody.appendChild(price);
     cartBody.appendChild(addButton);
@@ -90,6 +124,8 @@ function createCard(data) {
 }
 
 function createOrderCart(product) {
+    let orderDiv=document.createElement("div");
+    orderDiv.classList.add("row");
     let productName=document.createElement("p");
     productName.classList.add("col-2");
     productName.innerHTML=product.name;
@@ -98,15 +134,83 @@ function createOrderCart(product) {
     productQty.innerHTML=1;
     let addProduct=document.createElement("i");
     addProduct.classList.add("fa-solid","fa-plus","col-1");
+    addProduct.addEventListener("click",()=>{
+        productQty.innerHTML=parseInt(productQty.innerHTML)+1;
+        productTotal.innerHTML=parseInt(productQty.innerHTML)*parseInt(product.price);
+    })
     let removeProduct=document.createElement("i");
     removeProduct.classList.add("fa-solid","fa-minus","col-1");
-    
-    
+    removeProduct.addEventListener("click",()=>{
+        if (productQty.innerHTML<=1) {
+            productQty.innerHTML=1;
+        }
+        else {
+            productQty.innerHTML=parseInt(productQty.innerHTML)-1;
+        }
+        productTotal.innerHTML=parseInt(productQty.innerHTML)*parseInt(product.price);
+    })
+
+
+    let productTotal=document.createElement("p");
+    productTotal.classList.add("col-4");
+    productTotal.innerHTML=parseInt(productQty.innerHTML)*parseInt(product.price);
+
+
+    let productCancel=document.createElement("i");
+    productCancel.classList.add("fa-solid","fa-x","col-2");
+    productCancel.addEventListener("click",()=>{
+        orderDiv.remove();
+        i=0;
+    })
+    orderDiv.appendChild(productName);
+    orderDiv.appendChild(productQty);
+    orderDiv.appendChild(addProduct);
+    orderDiv.appendChild(removeProduct);
+    orderDiv.appendChild(productTotal);
+    orderDiv.appendChild(productCancel);
+    return orderDiv;
 }
 
-            <p class="product-name col-2">tea</p>
-            <p class="product-price col-2">5</p>
-            <i class="fa-solid fa-plus col-1 add-product"></i>
-            <i class="fa-solid fa-minus col-1 remove-product"></i>
-            <p class="product-price col-4">EGP 25</p>
-            <i class="fa-solid fa-x col-2 delete-order"></i>
+
+
+//search
+let searchedProducts=document.querySelector(".searched-products");
+
+let changeProduct=document.querySelector(".change-product");
+let searchBar=document.querySelector(".search-bar");
+
+let paginatedProducts=document.querySelector(".products-pagination");
+searchBar.addEventListener("keyup",()=>{
+    paginatedProducts.classList.add("d-none");
+    removeAllChilds(searchedProducts);
+    getMatchedProducts(searchBar.value);
+    searchedProducts.classList.remove("d-none")
+    if (searchBar.value==""){
+        paginatedProducts.classList.remove("d-none");
+        searchedProducts.classList.add("d-none")
+    }
+})
+
+
+
+async function getMatchedProducts (char){
+    let sentDATA =new FormData();
+    sentDATA.append("search",char)
+    let res=await fetch("http://localhost/php/getMatchedProducts.php",{
+        method:"POST",
+        body:sentDATA
+    }
+    )
+    let data=await res.json();
+    console.log(char);
+    console.log(data);
+    if(data==false)
+    {
+        document.querySelector(".response").innerHTML="No Matched Values";
+    }
+    else {
+        data.forEach(product => {
+            searchedProducts.appendChild(createCard(product));
+        });
+    }   
+}
