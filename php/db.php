@@ -31,7 +31,7 @@ class DB
 
             $sql = $this->connection->prepare($query);
             $result = $sql->execute();
-            $result = $sql->fetchall(PDO::FETCH_ASSOC);
+            $result = $sql->fetchAll(PDO::FETCH_ASSOC);
             if (empty($result)) {
                 return false;
             }

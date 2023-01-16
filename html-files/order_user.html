@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order_Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .card {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ----  nav bar New--->
+    <div class="container p-5">
+      <nav class="navbar navbar-expand-lg bg-black bg-opacity-75 fixed-top">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ps-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link active text-white border-end border-2"
+                  aria-current="page"
+                  href="#"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white ms-1" href="#">My Orders</a>
+              </li>
+            </ul>
+          </div>
+          <img src="../images/user/6-m.png" id="img1" alt="" />
+          <p class="text-white mx-4 pt-4 fs-5" id="MYp">Name</p>
+        </div>
+      </nav>
+    </div>
+    <div class="background"></div>
+    <div class="contanier d-flex justify-content-center align-items-center w-75 m-auto">
+      <div class="mt-5 bg-opacity-50 bg-black pb-5  w-100 m-auto">
+        <h2 class="text-white pt-5 text-center">My Orders</h2>
+        <br />
+        <div class="text-center">
+          <label for="from" class="text-white px-4"> Date_From</label>
+          <input
+            type="date"
+            name="Date_From"
+            class="input border-b p-3 px-5 mx-3 text-white"
+            style="background-color: rgb(122, 98, 98); border: none"
+            placeholder="Date_From"
+            id="from"
+          />
+          <label for="to" class="text-white"> Date_To</label>
+          <input
+            type="date"
+            name="Date_To"
+            class="input border-b p-3 px-5 mx-3 text-white"
+            style="background-color: rgb(122, 98, 98); border: none"
+            placeholder="Date_To"
+            id="to"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="container bg-black bg-opacity-50 d-flex justify-content-center align-items-center w-75 mt-5 py-5"
+    >
+      <table class="text-white border ms-5">
+        <thead class="border">
+          <tr class="border">
+            <th class="border px-5">Order Date</th>
+            <th class="border px-5">User Action</th>
+            <th class="border px-5">Status</th>
+            <th class="border px-5">Amount</th>
+            <th class="border px-5">Action</th>
+          </tr>
+        </thead>
+        <tbody class="border"></tbody>
+      </table>
+      <div class="changeProducts py-5"></div>
+    </div>
+    <!-- <div class="  mt-5 bg-opacity-50 bg-black  w-75 m-auto text-center py-5" >
+    <table class="text-white border   ms-5 ">
+      <thead class=" border ">
+        <tr class=" border ">
+          <th class=" border  px-5 ">Order Date </th>
+          <th class=" border  px-5 ">User Action</th>
+          <th class=" border  px-5 ">Status     </th>
+          <th class=" border  px-5 ">Amount     </th>
+          <th class=" border  px-5 ">Action     </th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <div class="changeProducts py-5">
+    </div>
+  </div> -->
+    <!-- <div
+      class="container shadow d-flex justify-content-center align-items-center py-2 rounded"
+      style="height: 100vh"
+    >
+
+    </div> -->
+    <section
+      class="mt-5 bg-opacity-50 pb-5 ps-5 w-75 m-auto text-center py-5 bg-black "
+    >
+      <div class="card" style="width: 10rem"></div>
+      <div class="total"></div>
+    </section>
+    <script src="../JS/user.js"></script>
+  </body>
+</html>
