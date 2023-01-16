@@ -11,5 +11,3 @@ echo json_encode($matchedProducts);
 else{
     echo json_encode(false);
 }
-
-

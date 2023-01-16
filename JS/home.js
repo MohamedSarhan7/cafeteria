@@ -9,17 +9,16 @@ async function getUserData (){
 }
 getUserData();
 
+let latestOrderDiv=document.querySelector(".latest-order");
+console.log(latestOrderDiv);
 async function getLatestOrder(){
     let response=await fetch("http://localhost/php/get-latest-order.php")
     let data= await response.json();
-    console.log(data);
+    latestOrderDiv.appendChild(createCard(data));
 }
 
 getLatestOrder();
 
-
-//flag
-let i=0;
 
 
 // all products pagination
@@ -71,20 +70,7 @@ function removeAllChilds(div) {
 }
 
 
-//create order
-
-// function createCartRow(data){
-//     document.querySelector(".product-cart").appendChild(createOrderCart(data));
-// }
-
-// function updateTotal (productTotal,productQty,product){
-//     productTotal.innerHTML=parseInt(productQty.innerHTML)*parseInt(product.price);
-// }
-
-
-
-
-
+let productCart=document.querySelector(".product-cart");
 
 function createCard(data) {
     let cartDiv=document.createElement("div");
@@ -102,19 +88,9 @@ function createCard(data) {
     let addButton=document.createElement("p");
     addButton.innerHTML="Add To Order";
     addButton.classList.add("btn","btn-dark");
-    addButton.addEventListener("click",(e)=>{
-        //  if (i==0)
-        //  {
-        
-        //    e.target.classList.add("disabled");
-        //      i=1;
-        //     document.querySelector(".product-cart").appendChild(createOrderCart(data));
-        //   }
-        //  else
-        //  {
-        //      console.log(i);
-        //      console.log("second");
-        //  }
+    addButton.addEventListener("click",()=>{
+            isExist(data);
+                     
     })
     cartBody.appendChild(cartTitle);
     cartBody.appendChild(price);
@@ -123,9 +99,29 @@ function createCard(data) {
     return cartDiv;
 }
 
+
+// check if order already exsits then increase qty 
+
+function isExist(data){
+    for (let i=0;i<productCart.children.length;i++)
+        {
+            if(productCart.children[i].children[0].innerHTML==data.id)
+            {
+                productCart.children[i].children[2].innerHTML=parseInt(productCart.children[i].children[2].innerHTML)+1;
+                productCart.children[i].children[5].innerHTML=parseInt(productCart.children[i].children[2].innerHTML)*parseInt(data.price);
+                return ;
+            }
+        }
+        productCart.appendChild(createOrderCart(data));
+}
+
+
 function createOrderCart(product) {
     let orderDiv=document.createElement("div");
     orderDiv.classList.add("row");
+    let productId=document.createElement("p");
+    productId.innerHTML=product.id;
+    productId.classList.add("d-none");
     let productName=document.createElement("p");
     productName.classList.add("col-2");
     productName.innerHTML=product.name;
@@ -160,8 +156,9 @@ function createOrderCart(product) {
     productCancel.classList.add("fa-solid","fa-x","col-2");
     productCancel.addEventListener("click",()=>{
         orderDiv.remove();
-        i=0;
+        
     })
+    orderDiv.appendChild(productId);
     orderDiv.appendChild(productName);
     orderDiv.appendChild(productQty);
     orderDiv.appendChild(addProduct);
@@ -180,9 +177,9 @@ let changeProduct=document.querySelector(".change-product");
 let searchBar=document.querySelector(".search-bar");
 
 let paginatedProducts=document.querySelector(".products-pagination");
-searchBar.addEventListener("keyup",()=>{
+searchBar.addEventListener("change",()=>{
     paginatedProducts.classList.add("d-none");
-    removeAllChilds(searchedProducts);
+    searchedProducts.innerHTML="";
     getMatchedProducts(searchBar.value);
     searchedProducts.classList.remove("d-none")
     if (searchBar.value==""){
@@ -211,6 +208,7 @@ async function getMatchedProducts (char){
     else {
         data.forEach(product => {
             searchedProducts.appendChild(createCard(product));
+            document.querySelector(".response").innerHTML="";
         });
     }   
 }
