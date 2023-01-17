@@ -3,14 +3,13 @@ let userPic=document.getElementById("profile-pic");
 async function getUserData (){
     let response=await fetch("http://localhost/php/get-user-data.php")
     let user= await response.json();
-    console.log(user);
     userName.innerHTML=user.name;
     userPic.setAttribute("src",user.avatar)
 }
 getUserData();
 
 let latestOrderDiv=document.querySelector(".latest-order");
-console.log(latestOrderDiv);
+
 async function getLatestOrder(){
     let response=await fetch("http://localhost/php/get-latest-order.php")
     let data= await response.json();
@@ -19,6 +18,25 @@ async function getLatestOrder(){
 
 getLatestOrder();
 
+let roomsList=document.querySelector(".rooms")
+
+async function getAllRooms (){
+    let response=await fetch("http://localhost/php/getAllRooms.php")
+    let data= await response.json();
+    console.log(data);
+    data.forEach(room =>{
+        roomsList.append(createRooms(room));
+    });
+}
+
+getAllRooms();
+
+function createRooms(rooms) {
+    let roomLi=document.createElement("option");
+    roomLi.setAttribute("value",rooms.room);
+    roomLi.innerHTML=rooms.room;
+    return roomLi;
+}
 
 
 // all products pagination
@@ -70,6 +88,8 @@ function removeAllChilds(div) {
 }
 
 
+//create cart
+
 let productCart=document.querySelector(".product-cart");
 
 function createCard(data) {
@@ -90,6 +110,7 @@ function createCard(data) {
     addButton.classList.add("btn","btn-dark");
     addButton.addEventListener("click",()=>{
             isExist(data);
+            calculateTotalOrder();
                      
     })
     cartBody.appendChild(cartTitle);
@@ -115,6 +136,17 @@ function isExist(data){
         productCart.appendChild(createOrderCart(data));
 }
 
+// calculate total of order 
+let total=0;
+function calculateTotalOrder(){
+    for (let i=1;i<productCart.children.length;i++) {
+        total=parseInt(total)+parseInt(productCart.children[i].children[5].innerHTML);
+    }
+    document.getElementById("total").innerHTML=total;
+    total=0;
+}
+
+//create order
 
 function createOrderCart(product) {
     let orderDiv=document.createElement("div");
@@ -133,6 +165,7 @@ function createOrderCart(product) {
     addProduct.addEventListener("click",()=>{
         productQty.innerHTML=parseInt(productQty.innerHTML)+1;
         productTotal.innerHTML=parseInt(productQty.innerHTML)*parseInt(product.price);
+        calculateTotalOrder();
     })
     let removeProduct=document.createElement("i");
     removeProduct.classList.add("fa-solid","fa-minus","col-1");
@@ -144,6 +177,7 @@ function createOrderCart(product) {
             productQty.innerHTML=parseInt(productQty.innerHTML)-1;
         }
         productTotal.innerHTML=parseInt(productQty.innerHTML)*parseInt(product.price);
+        calculateTotalOrder();
     })
 
 
@@ -156,6 +190,7 @@ function createOrderCart(product) {
     productCancel.classList.add("fa-solid","fa-x","col-2");
     productCancel.addEventListener("click",()=>{
         orderDiv.remove();
+        calculateTotalOrder();
         
     })
     orderDiv.appendChild(productId);
@@ -212,3 +247,49 @@ async function getMatchedProducts (char){
         });
     }   
 }
+
+//confirm order
+
+let confirm=document.getElementById("confirm");
+
+confirm.addEventListener("click",()=>{
+    console.log(getOrderDetails());
+    confirmOrder(getOrderDetails());
+})
+
+
+
+function getProductInOrder(){
+    let  productInOrders=[]
+    for (let i=1;i<productCart.children.length;i++) {
+        let productOrder={
+            product_id:parseInt(productCart.children[i].children[0].innerHTML),
+            qty:parseInt(productCart.children[i].children[2].innerHTML)
+        }
+        productInOrders.push(productOrder);
+    }
+    return productInOrders;
+}
+
+let notes=document.getElementById("notes");
+function getOrderDetails () {
+    let orderDetails=[];
+    let room={room:roomsList.value}
+    let note={note:notes.value}
+    orderDetails.push(room,note,getProductInOrder())
+    return orderDetails;
+}
+
+
+async function confirmOrder(order) {
+    let sentDATA =new FormData();
+    sentDATA.append(order);
+    sentDATA.append("search",char)
+    let res=await fetch("http://localhost/php/confirmOrder.php",{
+        method:"POST",
+        body:sentDATA
+        }
+    )
+
+}
+
