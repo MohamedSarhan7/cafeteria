@@ -4,9 +4,9 @@
     border-radius: 50%;
     margin-left: 550px;
 }
-td,tr,thead,th,table,tbody{
+/* td,tr,thead,th,table,tbody{
     border: 1px solid white;
-}
+} */
 body {
     background-image: url("../images/WhatsApp\ Image\ 2023-01-15\ at\ 13.12.48.jpg");
     background-repeat: no-repeat;
@@ -72,7 +72,7 @@ body {
 img{
     height: 30px;
    width: 30px;
-}
+}*/
 table {
     opacity: 70%;
     background-color: rgb(9, 8, 8);
@@ -94,4 +94,4 @@ thead{
 }
 .container{
     z-index: -2;
-} */
+} 

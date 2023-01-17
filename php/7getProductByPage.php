@@ -30,6 +30,6 @@ require("./db.php");
 // }
 $orders = new DB(DATABASE, DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
 $pageNo = $_POST['Page_No'];
-$id=3;
-$allRows = $orders->selectpage("orders where userid = $id ",$pageNo);
+$user_id=6;
+$allRows = $orders->selectpage("orders where userid = $user_id ",$pageNo);
 echo json_encode($allRows);
