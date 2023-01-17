@@ -38,5 +38,5 @@ class getRooms extends DB {
 }
 
 $rooms = new getRooms(DATABASE, DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASS);
-$data=$rooms->selectAllRooms('user','room','');
+$data=$rooms->selectAllRooms('user','room',"role <>'admin'");
 echo json_encode($data);
