@@ -22,7 +22,7 @@ function createOption(obj) {
 
 
 async function getuserForSelectMenu() {
-    let res = await fetch("http://localhost/php/checks/get_all_users.php", {
+    let res = await fetch("http://localhost/php/9_get_all_users.php", {
         method: "get",
     });
     let data = await res.json();
@@ -40,14 +40,14 @@ function mainGetUserForSelectMenu(data) {
 
 //  or  item event 
 selectMenu.addEventListener("change", () => {
-    ordersSecion.style.display="none";
+    ordersSecion.style.display = "none";
     orderProducts.textContent = '';
-    
-    if (!isNaN(selectMenu.value)){
-console.log(selectMenu.value);
+
+    if (!isNaN(selectMenu.value)) {
+        console.log(selectMenu.value);
         getOneUsersWithTotalMoney(selectMenu.value);
     }
-    
+
 
 });
 
@@ -66,7 +66,7 @@ allBtn.addEventListener("click", () => {
 async function getOneUsersWithTotalMoney(id) {
     let formdata = new FormData();
     formdata.append("id", id);
-    let res = await fetch("http://localhost/php/checks/get_one_user_with_total_money.php", {
+    let res = await fetch("http://localhost/php/9_get_one_user_with_total_money.php", {
         method: "post",
         body: formdata,
     });
@@ -81,12 +81,12 @@ async function getOneUsersWithTotalMoney(id) {
 async function getAllUsersWithTotalMoney(pageNumber) {
     let formdata = new FormData();
     formdata.append("page", pageNumber);
-    let res = await fetch("http://localhost/php/checks/get_all_users_with_total_money.php", {
+    let res = await fetch("http://localhost/php/9_get_all_users_with_total_money.php", {
         method: "post",
         body: formdata,
     });
     let data = await res.json();
-d1.textContent='';
+    d1.textContent = '';
     mainGetAllUsersWithTotalMoney(data);
 
 }
@@ -94,6 +94,8 @@ d1.textContent='';
 
 function mainGetAllUsersWithTotalMoney(data) {
     data.forEach((e) => {
+        ordersSecion.style.display = "none";
+        orderProducts.textContent = '';
         const item = createTRforD1(e);
         item.addEventListener("click", () => {
             getuserOrders(e.user_id);
@@ -111,7 +113,7 @@ function mainGetAllUsersWithTotalMoney(data) {
 async function getuserOrders(id) {
     let formdata = new FormData();
     formdata.append("id", id);
-    let res = await fetch("http://localhost/php/checks/get_user_orders.php", {
+    let res = await fetch("http://localhost/php/9_get_user_orders.php", {
         method: "post",
         body: formdata,
     });
@@ -125,7 +127,7 @@ async function getuserOrders(id) {
 
 function mainGetUserOrder(arr) {
     secionTwo.textContent = '';
-    orderProducts.textContent="";
+    orderProducts.textContent = "";
     // console.log("log");
     arr.forEach((e) => {
         const test = createTRforD2(e);
@@ -133,10 +135,10 @@ function mainGetUserOrder(arr) {
             // append order details
             // console.log(e);
             // console.log(e.id);
-            orderProducts.textContent='';
+            orderProducts.textContent = '';
             getOrderDetailes(e.order_id);
             orderDetail.style.display = "block";
-            
+
         })
         secionTwo.appendChild(test);
     });
@@ -151,6 +153,9 @@ function createTRforD1(obj) {
     userTD.innerText = obj.name;
     moneyTD.innerText = obj.total_money;
     const TR = document.createElement("tr");
+    moneyTD.classList.add("td-color");
+    userTD.classList.add("td-color");
+    TR.classList.add("td-color");
     TR.appendChild(userTD);
     TR.appendChild(moneyTD);
     return TR;
@@ -162,6 +167,9 @@ function createTRforD2(obj) {
     userTD.innerText = obj.created_at;
     moneyTD.innerText = obj.total_price;
     const TR = document.createElement("tr");
+    moneyTD.classList.add("td-color");
+    userTD.classList.add("td-color");
+    TR.classList.add("td-color");
     TR.appendChild(userTD);
     TR.appendChild(moneyTD);
     return TR;
@@ -174,14 +182,16 @@ function createTRforD2(obj) {
 
 function createOrderDetailes(obj) {
     const card = document.createElement("div");
-    // card.classList.add("d-flex");
+    card.classList.add("card");
     // card.classList.add("flex-column");
     card.classList.add("lil-card");
 
     const productName = document.createElement("p");
     const img = document.createElement("img");
+    img.classList.add("card-image-top");
     const price = document.createElement("p");
     const quantity = document.createElement("p");
+
 
 
 
@@ -204,7 +214,7 @@ function createOrderDetailes(obj) {
 async function getOrderDetailes(id) {
     let formdata = new FormData();
     formdata.append("id", id);
-    let res = await fetch("http://localhost/php/checks/get_order_detailes.php", {
+    let res = await fetch("http://localhost/php/9_get_order_detailes.php", {
         method: "post",
         body: formdata,
     });
@@ -219,7 +229,7 @@ function mainGetOrderDetailes(arr) {
 
     arr.forEach((e) => {
         const test = createOrderDetailes(e);
-    
+
     });
 }
 
@@ -231,31 +241,35 @@ function mainGetOrderDetailes(arr) {
 
 // ======================================================
 // ========== pagenation fun ============================
-async function getTotalNumberOfPages(){
-    let res = await fetch("http://localhost/php/checks/get_total_number_of_pages.php");
-    let data= await res.json();
+async function getTotalNumberOfPages() {
+    let res = await fetch("http://localhost/php/9_get_total_number_of_pages.php");
+    let data = await res.json();
     mainPagination(data);
-    if(data>=1){
+    if (data >= 1) {
         getAllUsersWithTotalMoney(1);
     }
-    
-}
-
-function mainPagination(data){
-   for (let index = 1; index <= data; index++) {
-    createPagination(index);
-    
-   }
 
 }
 
-function createPagination(obj){
+function mainPagination(data) {
+    for (let index = 1; index <= data; index++) {
+        createPagination(index);
+
+    }
+
+}
+
+function createPagination(obj) {
     const li = document.createElement("li");
     const a = document.createElement("a");
     li.classList.add("page-item");
+    li.classList.add("pg");
+    a.classList.add("pg");
     a.classList.add("page-link");
-    a.innerHTML=obj;
-    a.addEventListener("click",()=>{
+    a.innerHTML = obj;
+    a.addEventListener("click", () => {
+    //     send your request her
+    //  and delete this
         getAllUsersWithTotalMoney(a.innerHTML);
     })
     li.appendChild(a);

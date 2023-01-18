@@ -1,5 +1,7 @@
 /* nav */
-
+.active {
+    display: block !important;
+}
 #cafe {
     font-family: 'La Belle Aurore', 'cursive';
     font-size: 34px;
@@ -18,54 +20,66 @@
 
 /*  ============================= */
 
-.date{
+.date {
     display: flex;
     gap: 50px;
 }
+
 /* .sec-two div{ 
     display: flex;
     gap: 30px;
     justify-content: center;
     align-items: center;
 } */
-#all{
+#all {
     width: 50px;
     height: 30px;
 }
+
 .users-select {
     padding: 20px;
     display: flex;
 }
-.users-select{
+
+.users-select {
     width: 250px;
     height: 30px;
 }
-.user-order{
+
+.user-order {
     display: none;
 }
+
 /* img{
     width: 100px;
     height: 100px;
 } */
-.order-details{
+.order-details {
     display: none;
 }
-.main-order-details{
+
+.main-order-details {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
 }
-.active{
-    display: block !important ;
-/* background-color: red; */
+
+.active {
+    display: block !important;
+    /* background-color: red; */
 }
-table, td,tr:hover{
+
+table,
+td,
+tr:hover {
     cursor: pointer;
 }
-a:hover{
-    cursor: pointer !important ;
+
+a:hover {
+    cursor: pointer !important;
 }
-.navbar {
+
+/* .navbar {
     background-color: black;
     opacity: 80%;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
@@ -111,7 +125,8 @@ a:hover{
 img {
     height: 30px;
     width: 30px;
-}
+} */
+
 .background {
     position: fixed;
     top: 0;
@@ -131,6 +146,7 @@ img {
     min-height: 100%;
     z-index: -2;
 }
+
 table {
     opacity: 70%;
     background-color: rgb(9, 8, 8);
@@ -155,17 +171,53 @@ thead {
 
 .td-color {
     color: beige !important;
-        font-family: 'Poppins', sans-serif !important;
-        font-weight: 200 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 200 !important;
 }
-#users-select{
-    background-color: rgba(34, 16, 7, 0.623)!important;
+
+#users-select {
+    background-color: rgba(34, 16, 7, 0.623) !important;
     opacity: 100%;
-    color: beige!important;
-    font-family: 'Poppins', sans-serif!important;
-    font-weight: 500!important;
+    color: beige !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
 }
-.pg{
-        background-color: rgba(34, 16, 7, 0.027) !important;
-            color: beige !important;
+
+.pg {
+    background-color: rgba(34, 16, 7, 0.027) !important;
+    color: beige !important;
+}
+
+.c-1 {
+    width: 30%;
+}
+
+.c-2 {
+    width: 10%;
+}
+
+.c-3 {
+    text-align: center;
+    width: 40%;
+}
+
+.c-4 {
+    width: 10%;
+}
+
+.c-5 {
+    width: 10%;
+}
+
+table,
+th,
+td {
+    color: beige !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 200 !important;
+}
+
+td img {
+    width: 70px;
+    height: 70px;
 }

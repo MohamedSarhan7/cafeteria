@@ -42,7 +42,7 @@ class DB
     }
     public function selectpage($tablename, $pagenum)
     {
-        $rows_per_page = 5;
+        $rows_per_page = 4;
         $offset = $rows_per_page * ($pagenum - 1);
         try {
             $query = "SELECT * from $tablename LIMIT  $rows_per_page  OFFSET $offset  ;";
@@ -172,7 +172,7 @@ class DB
     public function delete($tablename, $id)
     {
         try {
-            $query = "DELETE FROM `$tablename` WHERE id= $id;";
+            $query = "DELETE FROM `$tablename` WHERE id = $id;";
             $sql = ($this->connection)->prepare($query);
             $result =  ($sql)->execute();
             return $result;

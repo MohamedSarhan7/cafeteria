@@ -1,7 +1,7 @@
 <?php
 
 // require("../env.php");
-require("../db.php");
+require_once("./db.php");
 
 class checks extends DB
 {
@@ -130,6 +130,32 @@ class checks extends DB
             return $e->getMessage();
         }
     }
+
+
+    public function get_total_number_of_users_pages_admin()
+    {
+
+        try {
+            $query =
+                "select count(id) as'total_rows'
+                    from user where role <> 'admin' ;";
+            $sql = $this->connection->prepare($query);
+            $result = $sql->execute();
+            $result = $sql->fetchall(PDO::FETCH_ASSOC);
+            if (empty($result)) {
+
+                return false;
+            }
+            $result = $result[0]['total_rows'] / $this->rows_per_page;
+
+
+            return ceil($result);
+            // return $result;
+        } catch (Throwable $e) {
+            return $e->getMessage();
+        }
+    }
+    
     
 
     public function get_inValidRooms(){

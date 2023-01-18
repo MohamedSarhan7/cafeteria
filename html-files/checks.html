@@ -36,46 +36,31 @@
     </style>
 </head>
 
+
+    
 <body>
-    <div class="admin-nav sticky-top">
-        <nav id="nav" class=" navbar sticky-top navbar-expand-lg  navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand " id="cafe" href="#">Cafeteira</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Manual Order</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active " aria-current="page" href="#">Checks</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="">
-                    <a class="navbar-brand d-flex " href="#">
-                        <img class="m-2" id="acc-img" src="../images/user/admin.png" alt="" height="24"
-                            class="d-inline-block align-text-top">
-                        <span class=" m-2 align-self-center" id="account-name">Admin</span>
-                    </a>
-                </div>
+    <img class="imgg" src="../images/wallpaper.jpeg" alt="">
+    <div class="background"></div>
 
-            </div>
-        </nav>
-    </div>
 
+    <nav class="navbar ">
+        <ul class="ulaa">
+            <ul class="menna">
+                <li class="li" onclick="Home()">Home</li>
+                <li class="li" onclick="Products()">Products</li>
+                <li class="li" onclick="Users()">Users</li>
+                <li class="li" onclick="Manage()">Manage Orders</li>
+                <li class="li" onclick="Checks()">Checks</li>
+            </ul>
+        </ul>
+        <ul class="brand">
+            <li class="bli"><img src="../images/user/imgbin_computer-icons-user-profile-avatar-png.png" alt=""></li>
+            <li class="bli">
+                <p>Admin</p>
+            </li>
+        </ul>
+
+    </nav>
 
 
 
@@ -101,15 +86,17 @@
             <div class="">
 
 
-                <select class=" form-select form-select-lg col-6 " aria-label=".form-select-lg " name="users"
+                <select class=" form-select form-select-lg col-6 mm" aria-label=".form-select-lg " name="users"
                     id="users-select">
                     <option selected>Select User</option>
                 </select>
             </div>
-            <button class="col-4 h-25 btn btn-outline-primary " id="all">All</button>
+            <button class="col-4 h-25 btn btn-secondary " id="all">All</button>
         </div>
     </section>
+    <div class="container shadow py-2 rounded">
     <section class="user-money table-responsive">
+
         <table class="table table-striped">
             <thead>
                 <th>username</th>
@@ -119,6 +106,9 @@
             </tbody>
         </table>
     </section>
+    </div>
+    </div>
+    <div class="container shadow py-2 rounded">
     <section class="user-order table-responsive">
         <table class="table table-striped">
             <thead>
@@ -134,6 +124,7 @@
             </tbody>
         </table>
     </section>
+    </div>
     <section class="order-details">
         <div class="main-order-details">
             <div class="lil-card">
@@ -143,12 +134,12 @@
         </div>
     </section>
     <section>
-      
+
     </section>
     <section class="d-flex justify-content-center align-items-center position-relative  bottom-0 m-5">
         <nav aria-label="...">
-            <ul class="pagination pagination-lg pg">
-                
+            <ul class="pagination pagination-md pg">
+
             </ul>
         </nav>
     </section>
@@ -157,25 +148,8 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script src="../JS/checks.js"></script>
-</body>
+    </body>
 
-<nav class="navbar ">
-    <ul class="ulaa">
-        <ul class="menna">
-            <li class="li" onclick="Home`Home</li>
-            <li class="li" onclick="Products()">Products</li>
-            <li class="li" onclick="Users()">Users</li>
-            <li class="li" onclick="Manage()">Manage Orders</li>
-            <li class="li" onclick="Checks()">Checks</li>
-        </ul>
-    </ul>
-    <ul class="brand">
-        <li class="bli"><img src="../images/user/imgbin_computer-icons-user-profile-avatar-png.png" alt=""></li>
-        <li class="bli">
-            <p>Admin</p>
-        </li>
-    </ul>
 
-</nav>
 
 </html>
