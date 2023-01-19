@@ -87,9 +87,9 @@ let productCart = document.querySelector(".product-cart");
 
 function createCard(data) {
   let cartDiv = document.createElement("div");
-  cartDiv.classList.add("product", "card", "text-center", "col-4");
+  cartDiv.classList.add("product", "card", "text-center", "col-3","ms-2","mt-2");
   let img = document.createElement("img");
-  img.classList.add("card-img-top,img-fluid");
+  img.classList.add("card-img-top","img-fluid");
   img.setAttribute("src", data.avatar.replace(/['"]+/g, ""));
   cartDiv.appendChild(img);
   let cartBody = document.createElement("div");
@@ -112,7 +112,7 @@ function createCard(data) {
   return cartDiv;
 }
 
-// check if order already exsits then increase qty
+// check if order already exists then increase qty
 
 function isExist(data) {
   for (let i = 0; i < productCart.children.length; i++) {
@@ -143,7 +143,7 @@ function calculateTotalOrder() {
 
 function createOrderCart(product) {
   let orderDiv = document.createElement("div");
-  orderDiv.classList.add("row");
+  orderDiv.classList.add("row","cart-row","justify-content-center","align-items-baseline","text-center");
   let productId = document.createElement("p");
   productId.innerHTML = product.id;
   productId.classList.add("d-none");
@@ -154,7 +154,7 @@ function createOrderCart(product) {
   productQty.classList.add("col-2");
   productQty.innerHTML = 1;
   let addProduct = document.createElement("i");
-  addProduct.classList.add("fa-solid", "fa-plus", "col-1");
+  addProduct.classList.add("fa-solid", "fa-plus", "col-2","mt-1");
   addProduct.addEventListener("click", () => {
     productQty.innerHTML = parseInt(productQty.innerHTML) + 1;
     productTotal.innerHTML =
@@ -162,7 +162,7 @@ function createOrderCart(product) {
     calculateTotalOrder();
   });
   let removeProduct = document.createElement("i");
-  removeProduct.classList.add("fa-solid", "fa-minus", "col-1");
+  removeProduct.classList.add("fa-solid", "fa-minus", "col-2","mt-1");
   removeProduct.addEventListener("click", () => {
     if (productQty.innerHTML <= 1) {
       productQty.innerHTML = 1;
@@ -175,12 +175,12 @@ function createOrderCart(product) {
   });
 
   let productTotal = document.createElement("p");
-  productTotal.classList.add("col-4");
+  productTotal.classList.add("col-2","price");
   productTotal.innerHTML =
     parseInt(productQty.innerHTML) * parseInt(product.price);
 
   let productCancel = document.createElement("i");
-  productCancel.classList.add("fa-solid", "fa-x", "col-2");
+  productCancel.classList.add("fa-solid", "fa-x", "col-2","mt-1");
   productCancel.addEventListener("click", () => {
     orderDiv.remove();
     calculateTotalOrder();
@@ -200,16 +200,19 @@ let searchedProducts = document.querySelector(".searched-products");
 
 let changeProduct = document.querySelector(".change-product");
 let searchBar = document.querySelector(".search-bar");
-
+let latestProducts=document.querySelector(".latest-order");
 let paginatedProducts = document.querySelector(".products-pagination");
 searchBar.addEventListener("change", () => {
   paginatedProducts.classList.add("d-none");
+  latestProducts.classList.add("d-none");
   searchedProducts.innerHTML = "";
   getMatchedProducts(searchBar.value);
   searchedProducts.classList.remove("d-none");
   if (searchBar.value == "") {
     paginatedProducts.classList.remove("d-none");
     searchedProducts.classList.add("d-none");
+    latestProducts.classList.remove("d-none");
+    document.querySelector(".response").classList.add("d-none");
   }
 });
 
@@ -221,14 +224,13 @@ async function getMatchedProducts(char) {
     body: sentDATA,
   });
   let data = await res.json();
-  console.log(char);
-  console.log(data);
+
   if (data == false) {
     document.querySelector(".response").innerHTML = "No Matched Values";
   } else {
     data.forEach((product) => {
       searchedProducts.appendChild(createCard(product));
-      document.querySelector(".response").innerHTML = "";
+      
     });
   }
 }
