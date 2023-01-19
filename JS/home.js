@@ -45,8 +45,9 @@ function createRooms(rooms) {
 let allProductDiv = document.querySelector(".all-products");
 
 async function getNoOfPages() {
-  let response = await fetch("http://localhost/php/AllProducts2.php");
+  let response = await fetch("http://localhost/php/getAvaliableProducts.php");
   let data = await response.json();
+  console.log(data)
   for (let i = 0; i < data; i++) {
     let p = document.createElement("li");
     p.classList.add("page-link");
@@ -62,7 +63,7 @@ async function getNoOfPages() {
 async function reqPage(pageNo) {
   let sentDATA = new FormData();
   sentDATA.append("pageno", `${pageNo}`);
-  let res = await fetch("http://localhost/php/getProductByPage2.php", {
+  let res = await fetch("http://localhost/php/getAvalibleProductsByPage.php", {
     method: "POST",
     body: sentDATA,
   });

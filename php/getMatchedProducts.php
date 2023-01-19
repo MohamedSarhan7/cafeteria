@@ -5,7 +5,7 @@ $products=new DB(DATABASE, DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE
 $data=$_POST['search'];
 if (!empty($data))
 {
-    $matchedProducts = $products->selectAll("product","name LIKE '$data%'");
+    $matchedProducts = $products->selectAll("product","name LIKE '$data%' and status='avaliable'");
 echo json_encode($matchedProducts);
 }
 else{
