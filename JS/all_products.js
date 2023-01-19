@@ -235,7 +235,7 @@ async function deleteUser(id,status) {
 
 async function editUser(formdata) {
     console.log(formdata);
-    let response = await fetch("http://localhost/php/6_edit_user.php", {
+    let response = await fetch("http://localhost/php/edit_product.php", {
         method: "POST",
         body: formdata,
         // headers:

@@ -17,7 +17,6 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="../css/all_products.css">
-    <link rel="stylesheet" href="../css/navbar.css">
     <title>Document</title>
     <style>
         .hidden-form {
@@ -146,23 +145,32 @@
     <div class="background"></div>
 
     <nav class="navbar ">
-        <ul class="ulaa">
-            <ul class="menna">
-                <li class="li" onclick="Home()">Home</li>
-                <li class="li" onclick="Products()">Products</li>
-                <li class="li" onclick="Users()">Users</li>
-                <li class="li" onclick="Manage()">Manage Orders</li>
-                <li class="li" onclick="Checks()">Checks</li>
+        <ul class="links">
+          <li><img class="logo" src="../images/logo.png" alt=""></li>
+          <li>
+            <ul class="linksul">
+              <li><a class="linksli" onclick="Home()" >Home</a></li>
+              <li><a class="linksli" onclick="Products()" >Products</a> </li>
+              <li><a class="linksli" onclick="Users()" >Users</a> </li>
+              <li><a class="linksli" onclick="Manage()" >Manage Orders</a> </li>
+              <li><a class="linksli" onclick="Checks()" >Checks</a> </li>
             </ul>
+          </li>
         </ul>
         <ul class="brand">
-            <li class="bli"><img src="../images/user/admin.png" alt=""></li>
-            <li class="bli">
-                <p>Admin</p>
-            </li>
+          <li class="brandli">
+            <ul class="user">
+              <li><img class="user_image" src="../images/user/admin.png" alt=""></li>
+              <li>
+                <p class="user_name">Admin</p>
+              </li>
+            </ul>
+          </li>
+          <li class="brandli">
+            <button type="button" onclick="logout()" class="btn btn-outline-light">Log out</button>
+          </li>
         </ul>
-
-    </nav>
+      </nav>
 
 
     <div class="mt-1 d-flex w-100 justify-content-center">
