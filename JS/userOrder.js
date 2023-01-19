@@ -1,22 +1,37 @@
+var details = document.getElementById("cards");
+const showTotal = document.getElementsByClassName("total")[0];
+var pgul = document.querySelector(".pg");
 async function getUserData() {
   let res = await fetch("http://localhost/php/7getImageAndNameOfUser.php");
   let data = await res.json();
   displayUserData(data);
 }
+function mainPagination(data) {
+  for (let index = 1; index <= data; index++) {
+    createPagination(index);
+  }
+}
 async function getNumberOfPages() {
   let response = await fetch("http://localhost/php/7getNumberOfOrderPage.php");
   let data = await response.json();
-  for (let i = 0; i < data; i++) {
-    let p = document.createElement("span");
-    p.style.padding = "3px";
-    p.style.color = "white";
-    p.innerHTML = i + 1;
-    document.querySelector(".pagenation").append(p);
-    p.addEventListener("click", () => {
-      document.querySelector("tbody").innerHTML = "";
-      requestNumberPage(p.innerHTML);
-    });
-  }
+  mainPagination(data);
+}
+function createPagination(obj) {
+  const li = document.createElement("li");
+  const a = document.createElement("a");
+  li.classList.add("page-item");
+  li.classList.add("pg");
+  a.classList.add("pg");
+  a.classList.add("page-link");
+  a.innerHTML = obj;
+  a.classList.add("bg-transparent", "text-light", "border-black");
+  a.addEventListener("click", () => {
+    document.querySelector("tbody").innerHTML = "";
+    requestNumberPage(a.innerHTML);
+  });
+  li.appendChild(a);
+  console.log(li);
+  pgul.appendChild(li);
 }
 async function requestNumberPage(pageNumber) {
   let sentDATA = new FormData();
@@ -47,6 +62,7 @@ async function showTotalPriceOrder(userid) {
     body: sendId,
   });
   let data = await res.json();
+  console.log(data);
   displayTotal(data);
 }
 async function cancelOrder(id) {
@@ -61,7 +77,7 @@ async function cancelOrder(id) {
 }
 function displayUserData(resData) {
   console.log(resData);
-  document.getElementById("img1").src = resData.avatar.replace(/['"]+/g, "");
+  document.getElementById("img1").src = resData.avatar.replace(/['"]+/g, " ");
   document.getElementById("MYp").innerHTML = resData.name;
 }
 function displayUserOrder(resData) {
@@ -72,7 +88,6 @@ function displayUserOrder(resData) {
   });
 }
 function displayOrderDetails(resData) {
-  var details = document.getElementsByClassName("card")[0];
   details.innerHTML = "";
   console.log(resData);
   resData.forEach((e) => {
@@ -80,18 +95,16 @@ function displayOrderDetails(resData) {
     details.style.display = "block";
     details.append(row);
   });
-  var sec = document.getElementsByClassName("details")[0];
-  sec.style.display = "block";
-
   showTotalPriceOrder(resData.userid);
 }
 function displayTotal(resData) {
   console.log(resData);
   const totalOrderPrice = document.createElement("p");
+  showTotal.innerHTML = "";
   resData.forEach((e) => {
     totalOrderPrice.innerHTML = "Total_Price: " + e.total;
     totalOrderPrice.style.color = "white";
-    document.getElementsByClassName("total")[0].append(totalOrderPrice);
+    showTotal.append(totalOrderPrice);
   });
 }
 function createRow(res_Data) {
@@ -100,6 +113,7 @@ function createRow(res_Data) {
   const Action_user = document.createElement("td");
   const show = document.createElement("button");
   show.innerHTML = "Show";
+  show.classList.add("btn-outline-light", "btn");
   Action_user.append(show);
   show.addEventListener("click", () => {
     getOrderDetails(res_Data.id);
@@ -113,9 +127,7 @@ function createRow(res_Data) {
     const btn = document.createElement("button");
     Action.appendChild(btn);
     btn.innerHTML = "Cancle";
-    btn.style.backgroundColor = "rgb(208, 118, 38)";
-    btn.style.border = "none";
-    btn.style.color = "white";
+    btn.classList.add("btn-outline-danger", "btn");
     btn.addEventListener("click", () => {
       cancelOrder(res_Data.id);
     });
@@ -123,6 +135,7 @@ function createRow(res_Data) {
     Action.innerHTML = " ";
   }
   const row = document.createElement("tr");
+  // row.style.textAlign = "center";
   row.append(date);
   row.append(Action_user);
   row.append(stat);
@@ -130,23 +143,91 @@ function createRow(res_Data) {
   row.append(Action);
   return row;
 }
-function createOrderDetails(resData) {
+function createOrderDetails(obj) {
+  const cardbody=document.createElement("div");
   const productName = document.createElement("p");
+  productName.classList.add("card-title");
   const img = document.createElement("img");
   const price = document.createElement("p");
+  price.classList.add("card-text");
   const quantity = document.createElement("p");
-  quantity.innerHTML = "Amount: " + resData.qty;
-  price.innerText = "Price: " + resData.price;
-  productName.innerText = resData.name;
-  img.setAttribute("src", resData.avatar.replace(/['"]+/g, ""));
-  img.style.width = "100px";
+  quantity.classList.add("card-text");
+  quantity.innerHTML = "Quantity :" +obj.qty;
+  price.innerText = "Price : " + obj.price;
+  productName.innerText = obj.name;
+  img.setAttribute("src", obj.avatar.replace(/['"]+/g, ''));
+  console.log(img);
+  img.style.height="200px";
   const card = document.createElement("div");
-  card.appendChild(productName);
   card.appendChild(img);
-  card.appendChild(price);
-  card.appendChild(quantity);
+  card.appendChild(cardbody);
+  cardbody.appendChild(productName);
+  cardbody.appendChild(price);
+  cardbody.appendChild(quantity);
+  cardbody.classList.add("card","rounded");
+  img.classList.add("card-img-top");
+  cardbody.classList.add("card-body");
   return card;
 }
+// function createOrderDetails(resData) {
+//   const productName = document.createElement("p");
+//   const img = document.createElement("img");
+//   const price = document.createElement("p");
+//   const quantity = document.createElement("p");
+//   quantity.innerHTML = "Amount: " + resData.qty;
+//   price.innerText = "Price: " + resData.price;
+//   productName.innerText = resData.name;
+//   productName.classList.add("card-title");
+//   price.classList.add("card-text");
+//   quantity.classList.add("card-text");
+//   img.setAttribute("src", resData.avatar.replace(/['"]+/g, ""));
+//   // img.style.width = "100px";
+//   img.style.height = "200px";
+//   img.classList.add("card-img-top")
+//   const card = document.createElement("div");
+//   card.style.backgroundColor = "black";
+//   card.style.opacity = "70%";
+//   card.classList.add("card-body", "rounded-5","mx-4");
+//   card.style.width = "250px";
+//   productName.classList.add("mt-3");
+//   card.style.alignItems = "center";
+//   card.appendChild(productName);
+//   card.appendChild(img);
+//   card.appendChild(price);
+//   card.appendChild(quantity);
+//   return card;
+// }
+
+/////////////////////////////////////***********Date Test******** */
+// let from = document.getElementById("from");
+// console.log(from);
+// let dateFrom;
+// let dateFormatFrom;
+// let f = 0;
+// from.addEventListener("focusout", function (e) {
+//     console.log(e.target.value)
+//     dateFrom = e.target.value;
+//     if (dateFrom) {
+//         f = 1;
+//         let arr = dateFrom.split("/");
+//         dateFormatFrom = arr[2] + "-" + arr[0] + "-" + arr[1];
+//         console.log(dateFormatFrom);
+//     }
+// });
+
+// let to = document.getElementById("to");
+// console.log(to.value);
+// let dateTo;
+// let dateFormatTo;
+// to.addEventListener("focusout", function (e) {
+//     if (f == 1) {
+//         dateTo = e.target.value;
+//         let arr = dateTo.split("/");
+//         dateFormatTo = arr[2] + "-" + arr[1] + "-" + arr[0];
+//         console.log(dateFormatTo);
+//     }
+// });
+/////////////////////////////////////***********Date Test******** */
 getUserData();
 getNumberOfPages();
 requestNumberPage(1);
