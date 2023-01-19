@@ -154,9 +154,6 @@ class DB
     }
 
 
-
-
-
     private function conditionFun($condition)
     {
 

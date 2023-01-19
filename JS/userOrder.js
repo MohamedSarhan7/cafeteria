@@ -135,7 +135,6 @@ function createRow(res_Data) {
     Action.innerHTML = " ";
   }
   const row = document.createElement("tr");
-  // row.style.textAlign = "center";
   row.append(date);
   row.append(Action_user);
   row.append(stat);
@@ -143,91 +142,32 @@ function createRow(res_Data) {
   row.append(Action);
   return row;
 }
-function createOrderDetails(obj) {
-  const cardbody=document.createElement("div");
+function createOrderDetails(resData) {
   const productName = document.createElement("p");
-  productName.classList.add("card-title");
   const img = document.createElement("img");
   const price = document.createElement("p");
-  price.classList.add("card-text");
   const quantity = document.createElement("p");
+  productName.classList.add("card-title");
+  price.classList.add("card-text");
   quantity.classList.add("card-text");
-  quantity.innerHTML = "Quantity :" +obj.qty;
-  price.innerText = "Price : " + obj.price;
-  productName.innerText = obj.name;
-  img.setAttribute("src", obj.avatar.replace(/['"]+/g, ''));
+  quantity.innerHTML = "Quantity :" + resData.qty;
+  price.innerText = "Price : " + resData.price;
+  productName.innerText = resData.name;
+  img.setAttribute("src", resData.avatar.replace(/['"]+/g, ""));
   console.log(img);
-  img.style.height="200px";
+  img.style.height = "200px";
+  const cardbody = document.createElement("div");
   const card = document.createElement("div");
   card.appendChild(img);
   card.appendChild(cardbody);
   cardbody.appendChild(productName);
   cardbody.appendChild(price);
   cardbody.appendChild(quantity);
-  cardbody.classList.add("card","rounded");
-  img.classList.add("card-img-top");
-  cardbody.classList.add("card-body");
+  cardbody.classList.add("card", "rounded");
+  img.classList.add("card-img-top", "ps-5");
+  cardbody.classList.add("card-body", "ms-5");
   return card;
 }
-// function createOrderDetails(resData) {
-//   const productName = document.createElement("p");
-//   const img = document.createElement("img");
-//   const price = document.createElement("p");
-//   const quantity = document.createElement("p");
-//   quantity.innerHTML = "Amount: " + resData.qty;
-//   price.innerText = "Price: " + resData.price;
-//   productName.innerText = resData.name;
-//   productName.classList.add("card-title");
-//   price.classList.add("card-text");
-//   quantity.classList.add("card-text");
-//   img.setAttribute("src", resData.avatar.replace(/['"]+/g, ""));
-//   // img.style.width = "100px";
-//   img.style.height = "200px";
-//   img.classList.add("card-img-top")
-//   const card = document.createElement("div");
-//   card.style.backgroundColor = "black";
-//   card.style.opacity = "70%";
-//   card.classList.add("card-body", "rounded-5","mx-4");
-//   card.style.width = "250px";
-//   productName.classList.add("mt-3");
-//   card.style.alignItems = "center";
-//   card.appendChild(productName);
-//   card.appendChild(img);
-//   card.appendChild(price);
-//   card.appendChild(quantity);
-//   return card;
-// }
-
-/////////////////////////////////////***********Date Test******** */
-// let from = document.getElementById("from");
-// console.log(from);
-// let dateFrom;
-// let dateFormatFrom;
-// let f = 0;
-// from.addEventListener("focusout", function (e) {
-//     console.log(e.target.value)
-//     dateFrom = e.target.value;
-//     if (dateFrom) {
-//         f = 1;
-//         let arr = dateFrom.split("/");
-//         dateFormatFrom = arr[2] + "-" + arr[0] + "-" + arr[1];
-//         console.log(dateFormatFrom);
-//     }
-// });
-
-// let to = document.getElementById("to");
-// console.log(to.value);
-// let dateTo;
-// let dateFormatTo;
-// to.addEventListener("focusout", function (e) {
-//     if (f == 1) {
-//         dateTo = e.target.value;
-//         let arr = dateTo.split("/");
-//         dateFormatTo = arr[2] + "-" + arr[1] + "-" + arr[0];
-//         console.log(dateFormatTo);
-//     }
-// });
-/////////////////////////////////////***********Date Test******** */
 getUserData();
 getNumberOfPages();
 requestNumberPage(1);
