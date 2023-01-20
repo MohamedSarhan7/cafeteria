@@ -104,14 +104,12 @@ async function setPassword(pass,confPass,vaild) {
 let resetform = document.querySelector("#myform");
 let pass = resetform.password;
 let confPass = resetform.confirm_password; 
-console.log(confPass.value);
 
 
 
 resetform.addEventListener("submit", (e) => {
   e.preventDefault();
   if (checkPass(pass.value, confPass.value)) {
-    console.log(confPass.value);
 
     setPassword(pass.value, confPass.value, vaild);
   }

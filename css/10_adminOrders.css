@@ -116,7 +116,7 @@ option{
     color:rgb(34, 16, 7) ;
 }
 .card{
-    width: 18rem;
+    width: 200px!important;
     background-color: black;
     opacity: 80%;
     color: beige;

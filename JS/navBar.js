@@ -1,8 +1,8 @@
 function Home(){
-    window.location.href ="http://localhost/html-files/";
+    window.location.href ="http://localhost/html-files/home_admin.html";
 }
 function Products() { 
-    window.location.href = "http://localhost/html-files/";
+    window.location.href = "http://localhost/html-files/all_products.html";
     
 }
 function Users(){
@@ -11,7 +11,7 @@ function Users(){
 }
 function Manage(){
 
-    window.location.href = "http://localhost/html-files/";
+    window.location.href = "http://localhost/html-files/10_adminOrders.html";
 }
 function Checks(){
 

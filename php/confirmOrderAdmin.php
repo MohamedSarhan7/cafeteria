@@ -2,7 +2,7 @@
 //session_start();
 require("./env.php");
 require("./db.php");
-$orders = new DB(DATABASE, DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASS);
+$orders = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 $data = file_get_contents('php://input');
 $data = json_decode($data, true);
 $room=$data['room'];

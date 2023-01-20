@@ -1,7 +1,7 @@
 <?php
 require("./env.php");
 require("./db.php");
-$products=new DB(DATABASE, DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASS);
+$products=new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 $data=$_POST['search'];
 if (!empty($data))
 {
