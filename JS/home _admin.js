@@ -107,13 +107,14 @@ let productCart = document.querySelector(".product-cart");
 
 function createCard(data) {
   let cartDiv = document.createElement("div");
-  cartDiv.classList.add("product", "card", "text-center", "col-3","ms-2","mt-2");
+  cartDiv.classList.add("product", "text-center", "col-3","ms-2","mt-2");
   let img = document.createElement("img");
   img.classList.add("card-img-top","img-fluid");
   img.setAttribute("src", data.avatar.replace(/['"]+/g, ""));
+  img.style.height="200px";
   cartDiv.appendChild(img);
   let cartBody = document.createElement("div");
-  cartBody.classList.add("card-body");
+  cartBody.classList.add("card-body","card","rounded");
   let cartTitle = document.createElement("h5");
   cartTitle.innerHTML = data.name;
   let price = document.createElement("p");
