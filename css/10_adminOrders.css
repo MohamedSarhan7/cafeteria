@@ -1,0 +1,130 @@
+.background{
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  background-color: black;
+  opacity: 60%;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+.imgg{
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -2;
+}
+.navbar{
+    background-color: black;
+    opacity: 80%;
+    box-shadow:0px 2px 8px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+    color: beige;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 300;
+}
+.logo{
+    margin-left: 20px;
+    height: 60px;
+    width: 60px;
+}
+.links{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    margin-top: 8px;
+    align-items: center;
+    
+}
+.linksul{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    list-style: none;
+    
+}
+.linksli{
+    text-decoration: none;
+    color: beige;
+    margin-left: 20px;
+    border-right: 1px solid beige;
+    padding-right: 20px;
+}
+.linksul:last-of-type{
+    border-right: none;
+}
+.brand {
+    display: flex;
+    list-style: none;
+    margin-right: 10%;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+.brandli{
+    margin-left: 20px;
+}
+.user{
+    display: flex;
+    list-style: none;
+}
+.brand p{
+    margin-top: 5px;
+    margin-left: 10px;
+}
+img{
+    height: 30px;
+    width: 30px;
+}
+.orders{
+    margin-top: 150px;
+    text-align: center;
+    margin-bottom: 50px;
+    color: beige;
+    font-family:'Poppins', serif ;
+}
+table {
+    opacity: 70%;
+    background-color: rgb(9, 8, 8);
+    border-color:rgb(9, 8, 8) ;
+    border-color: beige; 
+    color: beige;
+    width: fit-content;
+}
+td{
+    color: beige;
+    font-family:'Poppins', sans-serif ;
+    font-weight: 200;
+}
+thead{
+    background-color: rgb(34, 16, 7);
+    opacity: 100%;
+    color: beige;
+    font-family:'Poppins', sans-serif ;
+    font-weight: 500;
+}
+.container{
+    z-index: 100;
+}
+select{
+    color: beige;
+}
+option{
+    color:rgb(34, 16, 7) ;
+}
+.card{
+    width: 18rem;
+    background-color: black;
+    opacity: 80%;
+    color: beige;
+    font-family: 'poppins' sans-serif;
+    box-shadow:0px 2px 8px rgba(0, 0, 0, 0.25);
+}
+.card-title{
+    font-size: x-large;
+}
+
+

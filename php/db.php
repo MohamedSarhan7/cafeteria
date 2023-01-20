@@ -1,5 +1,5 @@
 <?php
- //require("./env.php");
+// require("./env.php");
 class DB
 {
     public $DATABASE;
@@ -72,26 +72,6 @@ class DB
             return $e->getMessage();
         }
     }
-
-///////////////////
-public function selectorderdateusername($col_name1,$col_name2,$tablename1,$tablename2,$condition){
-    try{
-       $query= "SELECT $col_name1,$col_name2 from $tablename1 inner join $tablename2 ON $condition;";
-       $sql = $this->connection->prepare($query);
-                $result = $sql->execute();
-                $result = $sql->fetch(PDO::FETCH_ASSOC);
-                if (empty($result)) {
-                    return false;
-                }
-                return $result;
-            } catch (Throwable $e) {
-                return $e->getMessage();
-            }
-        }
-
-
-
-
 
     private function insertStmt($arr)
     {
@@ -255,15 +235,19 @@ public function selectorderdateusername($col_name1,$col_name2,$tablename1,$table
 
 
 
- $users = new DB("mysql", "localhost", "pro", "root", "1234567890!@#$%^&*(");
 
 
-//  get all data
 
-//$data = $users->selectAll("product", "status='avaliable'");
-//echo "<pre>";
-//print_r($data);
-//echo "</pre>";
+
+// $users = new DB("mysql", "localhost:3307", "cafe", "root", "1234");
+
+
+// //  get all data
+
+// $data = $users->selectAll("product", "status='avaliable'");
+// echo "<pre>";
+// print_r($data);
+// echo "</pre>";
 
 // select page
 // $data = $users->selectpage("user",3);

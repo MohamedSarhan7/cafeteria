@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/10_adminOrders.css">
+</head>
+<body>
+    <img class="imgg" src="../images/abstract-blur-defocused-restaurant-coffee-shop-cafe-interior.jpg" alt="">
+    <div class="background"></div>
+
+<nav class="navbar ">
+    <ul class="links">
+        <li><img class="logo" src="../images/Asset 3-8.png" alt=""></li>
+        <li><ul class="linksul">
+            <li><a class="linksli" href="">Home</a></li>
+            <li><a class="linksli" href="">Products</a> </li>
+            <li><a class="linksli" href="">Users</a> </li>
+            <li><a class="linksli" href="">Manage Orders</a> </li>
+            <li><a class="linksli" href="">Checks</a> </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="brand">
+        <li class="brandli">
+            <ul class="user">
+                <li ><img src="../images/user/imgbin_computer-icons-user-profile-avatar-png.png" alt=""></li>
+                <li ><p>Admin</p></li>
+            </ul>
+        </li>
+        <li class="brandli">
+            <button type="button" class="btn btn-outline-light">Log out</button>
+        </li>
+    </ul> 
+</nav>
+
+    <div class="main">
+        <h1 class="orders">Orders</h1>
+        <div class="container shadow  py-2 rounded">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Room</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                        <th scope="col"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tb">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <section class=" mt-5  pb-5 ps-5 d-flex flex-column w-500 m-auto text-center py-5 ">
+            <div id="card" class="d-flex justify-content-around mt-5 " style="width: 90%;">
+            </div>
+            <div class="total" style="color: beige; font-family: poppins sans-serif; font-weight: 200;"> 
+            </div>
+        </section>
+
+    </div>
+    <footer>
+        <div class="footer" style="background-color: black; bottom: 0;">
+            <p>ola</p>
+        </div>
+    </footer>
+    <script src="../JS/10_adminOrders.js"></script>
+    <script src="../JS/navBar.js"></script>
+    <script src="../JS/logout.js"></script>
+</body>
+</html>
