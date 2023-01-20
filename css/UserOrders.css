@@ -136,3 +136,15 @@ li
 {
     list-style: none;
 }
+.fa-facebook{
+    color: rgb(18, 18, 113);
+}
+.fa-twitter{
+    color: #2f8ac2 !important;
+}
+.fa-linked-in{
+    color: #1a658e !important;;
+}
+.fa-youtube{
+    color: rgb(186, 13, 13);
+}
