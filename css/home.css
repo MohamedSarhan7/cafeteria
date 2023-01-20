@@ -1,7 +1,4 @@
-body {
-  background-image: url("../971c4585-71eb-4202-a511-31259dd26c1f.jpg");
-  background-size: cover;
-}
+
 .imgg{
   position: fixed;
   top: 0;
@@ -120,4 +117,9 @@ height: 700px;
 }
 .card-title{
   font-size: x-large;
+}
+
+.heading {
+  color: beige;
+  font-family:'Poppins', serif ;
 }
