@@ -1,0 +1,30 @@
+ALTER TABLE `cafe`.`orders` 
+DROP FOREIGN KEY `orders_ibfk_1`;
+ALTER TABLE `cafe`.`orders` 
+ADD CONSTRAINT `orders_ibfk_1`
+  FOREIGN KEY (`userid`)
+  REFERENCES `cafe`.`user` (`id`)
+  ON DELETE SET NULL
+  ON UPDATE CASCADE;
+
+
+
+    let vaildSize = 1024 * 1024;
+    let vaildExtention = ['png', 'jpeg', 'jpg'];
+    if (obj.hasOwnProperty('avatar')) {
+
+        if (obj['avatar'] != "") {
+            let extention = avatar.type.split("/")[1];
+            if (!vaildExtention.includes(extention)) {
+                res['avatar'] = `not vaild extention only (png,jpeg,jpg)`;
+            }
+
+            if (avatar.size > vaildSize) {
+                res['avatar'] = "max size is 1 MB"
+            }
+        }
+
+    }
+
+    return res;
+}

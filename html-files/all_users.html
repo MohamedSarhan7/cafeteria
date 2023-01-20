@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Changa:wght@500&family=Corinthia:wght@700&family=La+Belle+Aurore&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/all_users.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <title>Document</title>
+    <style>
+        .hidden-form {
+
+            /* border: 2px solid red; */
+            align-items: center;
+            position: absolute;
+            width: 70%;
+            height: 83%;
+            margin: auto;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            top: 10%;
+            z-index: 11;
+            border-radius: 30px;
+
+        }
+
+        .hidden-form-parent {
+            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+
+        }
+
+        .c-1 {
+            width: 30%;
+        }
+
+        .c-2 {
+            width: 10%;
+        }
+
+        .c-3 {
+            text-align: center;
+            width: 40%;
+        }
+
+        .c-4 {
+            width: 10%;
+        }
+
+        .c-5 {
+            width: 10%;
+        }
+
+        table,
+        th,
+        td {
+            color: beige !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-weight: 200 !important;
+        }
+
+        td img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .background2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: black;
+            opacity: 80%;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* border: 2px solid red; */
+        }
+
+        .imgg2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 80%;
+            margin: auto;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -2;
+        }
+
+        #cancel-btn {
+            position: absolute;
+            right: 10%;
+            top: 10%;
+            z-index: 100;
+
+        }
+
+        #form-img {
+            position: absolute;
+            left: 5%;
+            top: 10%;
+            width: 100px;
+            height: 100px;
+            z-index: 100;
+        }
+
+        .add {
+            position: fixed !important;
+            right: 180px !important;
+            top: 115px !important;
+            /* background-color: rgba(34, 16, 7, 0.027) !important; */
+            color: beige !important;
+        }
+
+        /* 
+        td {
+            text-align: center;
+            vertical-align: middle;
+        } */
+        /* 
+        button {
+            outline: none;
+            border: none;
+            border-radius: 3px;
+            width: 70px;
+            height: 30px;
+            background-color: aliceblue;
+        } */
+    </style>
+</head>
+
+
+
+<body>
+    <img class="imgg" src="../images/wallpaper.jpeg" alt="">
+    <div class="background"></div>
+
+    <nav class="navbar ">
+        <ul class="links">
+            <li><img class="logo" src="../images/logo.png" alt=""></li>
+            <li>
+                <ul class="linksul">
+                    <li><a class="linksli" onclick="Home()">Home</a></li>
+                    <li><a class="linksli" onclick="Products()">Products</a> </li>
+                    <li><a class="linksli" onclick="Users()">Users</a> </li>
+                    <li><a class="linksli" onclick="Manage()">Manage Orders</a> </li>
+                    <li><a class="linksli" onclick="Checks()">Checks</a> </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="brand">
+            <li class="brandli">
+                <ul class="user">
+                    <li><img class="user_image" src="../images/user/admin.png" alt=""></li>
+                    <li>
+                        <p class="user_name">Admin</p>
+                    </li>
+                </ul>
+            </li>
+            <li class="brandli">
+                <button type="button" onclick="logout()" class="btn btn-outline-light">Log out</button>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="mt-1 d-flex w-100 justify-content-center parent">
+        <p class="text-light display-5">All Users</p>
+
+        <a class="btn  btn-outline-secondary add" href="http://localhost/html-files/add_user_admin.html">Add user</a>
+
+    </div>
+
+    <div class="container shadow py-2 rounded">
+        <section class="table-responsive">
+
+            <table class="table table-striped user-table">
+                <thead class="">
+                    <th class="c-1">Name</th>
+                    <th class="c-2">Room</th>
+                    <th class="c-3">Image</th>
+                    <th class="c-4">Edit</th>
+                    <th class="c-5">Delete</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <section class="d-flex justify-content-center align-items-center position-relative  bottom-0 m-5">
+        <nav aria-label="...">
+            <ul class="pagination pagination-md pg">
+
+            </ul>
+        </nav>
+    </section>
+
+
+    <div class="hidden-form-parent d-none">
+        <div class="d-flex justify-content-center align-items-center hidden-form">
+            <img class="imgg2 " src="../images/wallpaper.jpeg" alt="">
+            <div class="background2 ">
+            </div>
+            <div class="btn btn-outline-danger" id="cancel-btn">Cancel</div>
+            <img id="form-img" src="../images/admin.png">
+            <div class=" w-100 d-flex justify-content-center align-items-center">
+
+                <form action="" id="form" class="w-75  d-flex flex-column justify-content-center align-items-center"
+                    method="post">
+                    <div class="col-6">
+                        <lable for="username" class="form-label text-light">Full Name</lable>
+                        <input type="text" class="form-control" id="username" name="username"
+                            placeholder="type your name">
+                        <div class="invalid-feedback">
+                        </div>
+
+                    </div>
+                    <div class="input col-6">
+                        <lable for="email" class="form-label text-light">E-mail</lable>
+                        <input type="text" class="form-control" value="" id="email" name="email"
+                            placeholder="Muhammad@gmail.com">
+                        <div class="invalid-feedback">
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <lable for="room" class="form-label text-light">Room No.</lable>
+                        <input type="number" max="50" min="1" class="form-control" id="room" name="room"
+                            placeholder="room number">
+                        <div class="invalid-feedback">
+                        </div>
+
+                    </div>
+                    <div class="col-6 ">
+
+                        <lable for="changepass" class="form-label text-light">Click to change password</lable>
+                        <input class="form-check-input" type="checkbox" id="changepass">
+                    </div>
+                    <div class="input col-6 d-none">
+                        <lable for="password" class="form-label text-light">Password</lable>
+                        <input type="password" class="form-control" name="password" id="password"
+                            placeholder="at least 8 chars">
+                        <div class="invalid-feedback">
+
+                        </div>
+
+                    </div>
+                    <div class="input col-6 d-none">
+                        <lable for="confirm_password" class="form-label text-light">Confirm Password</lable>
+                        <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+                            placeholder="">
+                        <div class="invalid-feedback">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-6 ">
+
+                        <lable for="changeavatar" class="form-label text-light">Click to change avatar</lable>
+                        <input class="form-check-input" type="checkbox" id="changeavatar">
+                    </div>
+                    <div class="input col-6 d-none">
+                        <lable class="form-label text-light">Picture</lable>
+                        <input type="file" class="form-control" name="avatar">
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+                    <div class=" container text-center d-flex justify-content-center">
+                        <button type="submit" class="col-3 m-3 btn btn-primary">Submit</button>
+                        <!-- <a href="./html-files/login.html" class="col">already have an account?</a> -->
+                        <button type="reset" class="col-3 m-3 btn btn-secondary" id="clear">clear</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3  mytoast">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+
+            <strong class="me-auto">Voilà</strong>
+
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toastbody">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="../JS/all_users.js" type="module"></script>
+        <script src="../JS/navBar.js"></script>
+    <script src="../JS/get_user_data.js"></script>
+        <script src="../JS/logout.js"></script>
+
+
+</body>
+
+
+
+</html>

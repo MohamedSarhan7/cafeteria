@@ -1,0 +1,10 @@
+.active {
+    display: block !important;
+}
+label{
+    color: beige !important;
+/* border: 1px red !important; */
+}
+.parent{
+    margin-top: 80px!important;
+}

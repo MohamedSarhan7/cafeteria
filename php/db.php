@@ -42,7 +42,7 @@ class DB
     }
     public function selectpage($tablename, $pagenum)
     {
-        $rows_per_page = 5;
+        $rows_per_page = 4;
         $offset = $rows_per_page * ($pagenum - 1);
         try {
             $query = "SELECT * from $tablename LIMIT  $rows_per_page  OFFSET $offset  ;";
@@ -172,7 +172,7 @@ class DB
     public function delete($tablename, $id)
     {
         try {
-            $query = "DELETE FROM `$tablename` WHERE id= $id;";
+            $query = "DELETE FROM `$tablename` WHERE id = $id;";
             $sql = ($this->connection)->prepare($query);
             $result =  ($sql)->execute();
             return $result;
@@ -230,6 +230,31 @@ class DB
             return false;
         }
         return false;
+    }
+    public function get_inValidRooms()
+    {
+
+        try {
+            $query =
+                "select room as'rooms'from user ;";
+            $sql = $this->connection->prepare($query);
+            $result = $sql->execute();
+            $result = $sql->fetchall(PDO::FETCH_ASSOC);
+            if (empty($result)) {
+
+                return false;
+            }
+            // $result = $result[0]['total_rows'] / $this->rows_per_page;
+
+            $rooms = [];
+            foreach ($result as $key => $value) {
+                // $rooms[] = $value;
+                array_push($rooms, $value['rooms']);
+            }
+            return $rooms;
+        } catch (Throwable $e) {
+            return $e->getMessage();
+        }
     }
 }
 
