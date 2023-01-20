@@ -1,6 +1,7 @@
 var details = document.getElementById("cards");
 const showTotal = document.getElementsByClassName("total")[0];
 var pgul = document.querySelector(".pg");
+var tbody = document.querySelector("tbody");
 async function getUserData() {
   let res = await fetch("http://localhost/php/7getImageAndNameOfUser.php");
   let data = await res.json();
@@ -75,6 +76,35 @@ async function cancelOrder(id) {
   let data = await res.json();
   location.reload();
 }
+async function getOrdersByDate(dateFrom, dateTo) {
+  let fd = new FormData();
+  fd.append("dateFrom", dateFrom);
+  fd.append("dateTo", dateTo);
+  let res = await fetch("http://localhost/php/7getOrdersByDate.php", {
+    method: "POST",
+    body: fd,
+  });
+  let data = await res.json();
+  if(data["Status"] == "true"){
+   tbody.textContent="";
+    displayUserOrder(data["data"]);
+  }else{
+    tbody.textContent="";
+  }
+}
+let dateFrom = document.getElementById("from");
+let dateTo = document.getElementById("to");
+dateFrom.addEventListener("change", () => {
+  if (dateTo.value != "") {
+    getOrdersByDate(dateFrom.value, dateTo.value);
+  }
+});
+dateTo.addEventListener("change", () => {
+  if (dateFrom.value != "") {
+    console.log(dateFrom.value);
+    getOrdersByDate(dateFrom.value, dateTo.value);
+  }
+});
 function displayUserData(resData) {
   console.log(resData);
   document.getElementById("img1").src = resData.avatar.replace(/['"]+/g, " ");
@@ -84,7 +114,7 @@ function displayUserOrder(resData) {
   console.log(resData);
   resData.forEach((e) => {
     const row = createRow(e);
-    document.querySelector("tbody").append(row);
+    tbody.append(row);
   });
 }
 function displayOrderDetails(resData) {
@@ -171,3 +201,4 @@ function createOrderDetails(resData) {
 getUserData();
 getNumberOfPages();
 requestNumberPage(1);
+

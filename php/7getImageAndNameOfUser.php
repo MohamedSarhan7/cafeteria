@@ -2,7 +2,7 @@
 session_start();
 require("./env.php");
 require("./db.php");
-$users = new DB(DATABASE, DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
+$users = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 // $_SESSION[''];
 $id_user =3 ;
 if($id_user != 1){

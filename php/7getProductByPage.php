@@ -28,7 +28,7 @@ require("./db.php");
 // }
 
 // }
-$orders = new DB(DATABASE, DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
+$orders = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 $pageNo = $_POST['Page_No'];
 $user_id= 7;
 $allRows = $orders->selectpage("orders where userid = $user_id ",$pageNo);

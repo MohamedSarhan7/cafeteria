@@ -1,5 +1,7 @@
 <?php
-require("./connection.php");
+require ('./env.php');
+$sql = $DATABASE . ':host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME;
+$con = new PDO($sql,$DATABASE_USERNAME,$DATABASE_PASSWORD);
 $user_id=$_POST['userID'];
 $query = "SELECT SUM(total_price) as total from orders where status !='canceled' GROUP BY userid;";
 $sql = $con->prepare($query);

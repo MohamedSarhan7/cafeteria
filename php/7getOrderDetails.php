@@ -28,7 +28,7 @@ class myOrders extends DB{
     }
 }
 
-$orderData= new myOrders(DATABASE, DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
+$orderData= new myOrders($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 $id= $_POST['orderID'];
  $displayOrder =$orderData->getall_data_of_order($id);
   echo json_encode($displayOrder);
