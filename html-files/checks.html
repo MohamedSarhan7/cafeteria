@@ -17,23 +17,9 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="../css/checks.css">
+        <link rel="stylesheet" href="../css/navbar.css">
     <title>Document</title>
-    <style>
-        #cafe {
-            font-family: 'La Belle Aurore', 'cursive';
-            font-size: 34px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 20px;
-            margin-right: 100px;
-        }
-
-        #acc-img {
-            width: 50px;
-            height: 50px;
-            margin-right: 50px !important;
-        }
-    </style>
+    
 </head>
 
 
@@ -43,31 +29,39 @@
     <div class="background"></div>
 
 
-    <nav class="navbar ">
-        <ul class="ulaa">
-            <ul class="menna">
-                <li class="li" onclick="Home()">Home</li>
-                <li class="li" onclick="Products()">Products</li>
-                <li class="li" onclick="Users()">Users</li>
-                <li class="li" onclick="Manage()">Manage Orders</li>
-                <li class="li" onclick="Checks()">Checks</li>
+<nav class="navbar ">
+    <ul class="links">
+        <li><img class="logo" src="../images/logo.png" alt=""></li>
+        <li>
+            <ul class="linksul">
+                <li><a class="linksli" onclick="Home()" >Home</a></li>
+                <li><a class="linksli" onclick="Products()" >Products</a> </li>
+                <li><a class="linksli" onclick="Users()" >Users</a> </li>
+                <li><a class="linksli" onclick="Manage()" >Manage Orders</a> </li>
+                <li><a class="linksli" onclick="Checks()" >Checks</a> </li>
             </ul>
-        </ul>
-        <ul class="brand">
-            <li class="bli"><img src="../images/user/imgbin_computer-icons-user-profile-avatar-png.png" alt=""></li>
-            <li class="bli">
-                <p>Admin</p>
-            </li>
-        </ul>
+        </li>
+    </ul>
+    <ul class="brand">
+        <li class="brandli">
+            <ul class="user">
+                <li><img class="user_image" src="../images/user/admin.png" alt=""></li>
+                <li>
+                    <p class="user_name">Admin</p>
+                </li>
+            </ul>
+        </li>
+        <li class="brandli">
+            <button type="button" onclick="logout()" class="btn btn-outline-light">Log out</button>
+        </li>
+    </ul>
+</nav>
 
-    </nav>
 
 
-
-
-    <section class="sec-one">
-        <div class="main">
-            <div class="date">
+    <section class="sec-one parent">
+        <div class="main d-flex ">
+            <div class="date w-50 d-flex justify-content-around">
                 <div class="date-from">
                     <label for="from">from</label>
                     <input type="date" id="from">
@@ -116,20 +110,18 @@
                 <th>total order money</th>
             </thead>
             <tbody>
-                <tr>
-                    <td> 12-1 test style</td>
-                    <td> 100$</td>
-                </tr>
+               
 
             </tbody>
         </table>
     </section>
     </div>
-    <section class="order-details">
-        <div class="main-order-details">
-            <div class="lil-card">
-
-            </div>
+    <section class="order-details d-flex justify-content-center">
+    <section class="pb-5 ps-5 d-flex justify-content-center w-100 m-auto text-center py-5">
+        <div id="card" class="d-flex w-75 flex-wrap justify-content-around mt-5">
+        </div>
+       
+    </section>
 
         </div>
     </section>
@@ -144,10 +136,29 @@
         </nav>
     </section>
 
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3  mytoast">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+    
+                <strong class="me-auto">Voilà</strong>
+    
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastbody">
+                Hello, world! This is a toast message.
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/get_user_data.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script src="../JS/checks.js"></script>
+        <script src="../JS/navBar.js"></script>
+        <script src="../JS/logout.js"></script>
+
     </body>
 
 

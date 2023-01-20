@@ -51,7 +51,11 @@ changeAvatar.addEventListener("change", () => {
 })
 // changepass
 
+// ===========================
+const toastLiveExample = document.getElementById('liveToast')
+let mytoastbody = document.querySelector("#toastbody");
 
+// ====================================
 
 function setFormValue(obj) {
     username.value = obj.name;
@@ -158,7 +162,7 @@ async function getTotalNumberOfPages() {
     let res = await fetch("http://localhost/php/6_get_total_number_of_pages.php");
     let data = await res.json();
     mainPagination(data);
-    console.log(data);
+    // console.log(data);
     if (data >= 1) {
         getAllUsers(1);
     }
@@ -201,20 +205,20 @@ async function deleteUser(id) {
     });
 
     let data = await res.json();
-    console.log(data);
     if (data['status'] == true) {
-        let success = document.querySelector(".added");
+        // let success = document.querySelector(".added");
         pagenationUL.textContent = '';
 
         getTotalNumberOfPages();
 
         // getAllUsers(1);
-        success.classList.remove("d-none");
-        success.innerHTML = data['data'];
         setTimeout(() => {
-            success.classList.add("d-none");
+            mytoastbody.innerHTML = data['data'];
 
-        }, 4000);
+            let toast = new bootstrap.Toast(toastLiveExample)
+            toast.show();
+        }, 2000);
+
     } else {
         console.log(data);
     }
@@ -246,13 +250,12 @@ function mainEditUser(res) {
         editForm.classList.add("d-none");
         getAllUsers(1);
         // let success = document.querySelector(".added");
+        setTimeout(()=>{
+            mytoastbody.innerHTML = res['data'];
 
-        success.classList.remove("d-none");
-        success.innerHTML = res['data'];
-        setTimeout(() => {
-            success.classList.add("d-none");
-
-        }, 4000);
+            let toast = new bootstrap.Toast(toastLiveExample)
+            toast.show();
+        },2000);
     }
     else {
 

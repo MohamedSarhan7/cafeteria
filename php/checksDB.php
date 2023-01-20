@@ -88,6 +88,25 @@ class checks extends DB
         }
     }
 
+    public function get_orders_by_date($datefrom, $dateto)
+    {
+
+        try {
+            $query = "select  o.id as 'order_id',o.total_price ,o.created_at 
+        from  orders o where  
+        date(o.created_at)>='$datefrom' and 
+        date(o.created_at) <= '$dateto' and o.status='done';";
+            $sql = $this->connection->prepare($query);
+            $result = $sql->execute();
+            $result = $sql->fetchall(PDO::FETCH_ASSOC);
+            if (empty($result)) {
+                return false;
+            }
+            return $result;
+        } catch (Throwable $e) {
+            return $e->getMessage();
+        }
+    }
     //  -- get all data of spac order
     public function getall_data_of_order($id)
     {
@@ -119,12 +138,12 @@ class checks extends DB
             $result = $sql->execute();
             $result = $sql->fetchall(PDO::FETCH_ASSOC);
             if (empty($result)) {
-                
+
                 return false;
             }
             $result = $result[0]['total_rows'] / $this->rows_per_page;
 
-            
+
             return ceil($result);
         } catch (Throwable $e) {
             return $e->getMessage();
@@ -155,10 +174,11 @@ class checks extends DB
             return $e->getMessage();
         }
     }
-    
-    
 
-    public function get_inValidRooms(){
+
+
+    public function get_inValidRooms()
+    {
 
         try {
             $query =
@@ -173,7 +193,7 @@ class checks extends DB
             // $result = $result[0]['total_rows'] / $this->rows_per_page;
 
             $rooms = [];
-            foreach($result as $key => $value){
+            foreach ($result as $key => $value) {
                 // $rooms[] = $value;
                 array_push($rooms, $value['rooms']);
             }

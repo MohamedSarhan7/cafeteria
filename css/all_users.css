@@ -221,3 +221,6 @@ td img {
     width: 70px;
     height: 70px;
 }
+.parent {
+    margin-top: 120px !important;
+}

@@ -19,25 +19,34 @@
 <body>
     <img class="imgg" src="../images/wallpaper.jpeg" alt="">
     <div class="background"></div>
-        <nav class="navbar ">
-            <ul class="ulaa">
-                <ul class="menna">
-                    <li class="li" onclick="Home()">Home</li>
-                    <li class="li" onclick="Products()">Products</li>
-                    <li class="li" onclick="Users()">Users</li>
-                    <li class="li" onclick="Manage()">Manage Orders</li>
-                    <li class="li" onclick="Checks()">Checks</li>
+    <nav class="navbar ">
+        <ul class="links">
+            <li><img class="logo" src="../images/logo.png" alt=""></li>
+            <li>
+                <ul class="linksul">
+                    <li><a class="linksli" onclick="Home()" >Home</a></li>
+                    <li><a class="linksli" onclick="Products()">Products</a> </li>
+                    <li><a class="linksli" onclick="Users()" >Users</a> </li>
+                    <li><a class="linksli" onclick="Manage()" >Manage Orders</a> </li>
+                    <li><a class="linksli" onclick="Checks()">Checks</a> </li>
                 </ul>
-            </ul>
-            <ul class="brand">
-                <li class="bli"><img src="../images/user/imgbin_computer-icons-user-profile-avatar-png.png" alt=""></li>
-                <li class="bli">
-                    <p>Admin</p>
-                </li>
-            </ul>
-        
-        </nav>
-    <div class="d-flex justify-content-center align-items-center">
+            </li>
+        </ul>
+        <ul class="brand">
+            <li class="brandli">
+                <ul class="user">
+                    <li><img class="user_image" src="../images/user/admin.png" alt=""></li>
+                    <li>
+                        <p class="user_name">Admin</p>
+                    </li>
+                </ul>
+            </li>
+            <li class="brandli">
+                <button type="button" onclick="logout()" class="btn btn-outline-light">Log out</button>
+            </li>
+        </ul>
+    </nav>
+    <div class="d-flex justify-content-center align-items-center parent">
         <div class="m-5 w-75 d-flex justify-content-center align-items-center">
 
             <form action="" class="w-75  d-flex flex-column justify-content-center align-items-center" method="post">
@@ -57,27 +66,30 @@
                 </div>
                 <div class="input col-6">
                     <lable for="password" class="form-label text-light">Password</lable>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="at least 8 chars">
+                    <input type="password" class="form-control" name="password" id="password"
+                        placeholder="at least 8 chars">
                     <div class="invalid-feedback">
 
                     </div>
 
                 </div>
-                    <div class="input col-6">
-                        <lable for="confirm_password" class="form-label text-light">Confirm Password</lable>
-                        <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="">
-                        <div class="invalid-feedback">
-                    
-                        </div>
-                    
+                <div class="input col-6">
+                    <lable for="confirm_password" class="form-label text-light">Confirm Password</lable>
+                    <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+                        placeholder="">
+                    <div class="invalid-feedback">
+
                     </div>
+
+                </div>
 
                 <div class="col-6">
                     <lable for="room" class="form-label text-light">Room No.</lable>
-                    <input type="number" max="50" min="1" class="form-control" id="room" name="room" placeholder="room number">
+                    <input type="number" max="50" min="1" class="form-control" id="room" name="room"
+                        placeholder="room number">
                     <div class="invalid-feedback">
                     </div>
-                
+
                 </div>
                 <div class="input col-6">
                     <lable class="form-label text-light">Picture</lable>
@@ -90,17 +102,36 @@
                         <button type="reset" class="col-3 m-3 btn btn-secondary" id="clear">clear</button>
                     </div>
                 </div>
-            </div>
+        </div>
         </form>
     </div>
-  <div class="d-flex justify-content-center align-items-center">
-    <div class="alert alert-success text-center w-25 d-none added" role="alert">
-        A simple success alert—check it out!
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="alert alert-success text-center w-25 d-none added" role="alert">
+            A simple success alert—check it out!
+        </div>
     </div>
-  </div>
 
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3  mytoast">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+
+                <strong class="me-auto">Voilà</strong>
+
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastbody">
+                Hello, world! This is a toast message.
+            </div>
+        </div>
+    </div>
 
     <script src="../JS/add_user.js" type="module"></script>
+    <script src="../JS/navBar.js"></script>
+    <script src="../JS/logout.js"></script>
+    <script src="../JS/get_user_data.js"></script>
+
+
 </body>
 
 </html>

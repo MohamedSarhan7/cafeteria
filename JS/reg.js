@@ -7,35 +7,9 @@ const password = regForm.password;
 const confirm_password = regForm.confirm_password;
 const room = regForm.room;
 
-const toastLiveExample = document.getElementById('liveToast')
-let mytoastbody = document.querySelector("#toastbody");
-   
-
-// const clearForm = document.querySelector("#clear");
-
-
-
-
-
-
-// clearForm.addEventListener("click",()=>{
-
-//     let inputs= document.querySelectorAll("input");
-//     for (let index = 0; index < inputs.length; index++) {
-
-
-//         inputs[index].value='';
-//     }
-
-// });
-
-
-
-
-
 
 async function register(formdata) {
-    let response = await fetch("http://localhost/php/add_user_admin.php", {
+    let response = await fetch("http://localhost/php/register.php", {
         method: "POST",
         body: formdata,
         // headers:
@@ -59,34 +33,9 @@ function getdata() {
 }
 
 
-// function insertErrorMessages(ob) {
-//     for (const key in ob) {
-//         let input = document.querySelector(`input[name=${key}`);
-//         let error = input.nextElementSibling;
-//         error.textContent = ob[key];
-//         input.nextElementSibling.classList.add("active");
-//         // console.log(input.nextElementSibling);
-//     }
-// }
-
 function manipulateResponse(res) {
     if (res['status'] == true) {
-
-        let inputs = document.querySelectorAll("input");
-        for (let index = 0; index < inputs.length; index++) {
-
-
-            inputs[index].value = '';
-        }
-
-        mytoastbody.innerHTML = res['data'];
-
-        let toast = new bootstrap.Toast(toastLiveExample)
-        toast.show()
-        // let success = document.querySelector(".added");
-
-        // success.classList.remove("d-none");
-        // success.innerHTML = res['data'];
+        window.location.href ="http://localhost/html-files/home_user.html";
     }
     else {
         ValidateUser.insertErrorMessages(res['errors']);
@@ -98,7 +47,7 @@ function manipulateResponse(res) {
 
 regForm.addEventListener("submit", (e) => {
     // e.preventDefault();
-    
+
     let user = {
         "username": username.value,
         "password": password.value,
