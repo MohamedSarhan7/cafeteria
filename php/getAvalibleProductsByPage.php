@@ -11,7 +11,7 @@ class avaliableProducts extends DB {
     }
     public function selectAvaliblepage($tablename, $pagenum,$cond)
     {
-        $rows_per_page = 5;
+        $rows_per_page = 6;
         $offset = $rows_per_page * ($pagenum - 1);
         try {
             $query = "SELECT * from $tablename Where $cond LIMIT  $rows_per_page  OFFSET $offset   ;";

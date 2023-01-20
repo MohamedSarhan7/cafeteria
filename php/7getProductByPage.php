@@ -1,7 +1,7 @@
 <?php
 require("./env.php");
 require("./db.php");
-
+session_start();
 // class getPage extends DB{
     
 //     public function __construct($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD)
@@ -30,6 +30,6 @@ require("./db.php");
 // }
 $orders = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 $pageNo = $_POST['Page_No'];
-$user_id= 7;
-$allRows = $orders->selectpage("orders where userid = $user_id ",$pageNo);
+$userId = $_SESSION['user_id'];
+$allRows = $orders->selectpage("orders where userid = $userId ",$pageNo);
 echo json_encode($allRows);

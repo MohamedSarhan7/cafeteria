@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 require("./env.php");
 require("./db.php");
 $id = $_SESSION['user_id'];

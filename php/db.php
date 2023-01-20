@@ -126,8 +126,8 @@ class DB
 
 
         try {
-            $order = json_encode($order_in_arr);
-            $query = "call create_order($user_id,$room,'$note','$order');";
+            $order = json_encode($order_in_arr);  // json str
+            $query = "call create_order($user_id,$room,".'"'.$note.'"'.",'$order');";
             $sql = $this->connection->prepare($query);
             $result = $sql->execute();
             return $result;

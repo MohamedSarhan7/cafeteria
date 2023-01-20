@@ -13,7 +13,7 @@
         try{
            $query= "SELECT  user.name  as 'user_name', orders.created_at , orders.id as 'order_id', orders.room, orders.status
            from user  join orders 
-            on  user.id=orders.userid;";
+            on  user.id=orders.userid order by orders.created_at desc;";
            $sql = $this->connection->prepare($query);
                     $result = $sql->execute();
                     $result = $sql->fetchAll(PDO::FETCH_ASSOC);

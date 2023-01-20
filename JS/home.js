@@ -1,12 +1,5 @@
-let userName = document.getElementById("user-name");
-let userPic = document.getElementById("profile-pic");
-async function getUserData() {
-  let response = await fetch("http://localhost/php/get-user-data.php");
-  let user = await response.json();
-  userName.innerHTML = user.name;
-  userPic.setAttribute("src", user.avatar);
-}
-getUserData();
+const toastLiveExample = document.getElementById('liveToast')
+let mytoastbody = document.querySelector("#toastbody");
 
 let latestOrderDiv = document.querySelector(".latest-order");
 console.log(latestOrderDiv);
@@ -24,7 +17,7 @@ getLatestOrder();
 let roomsList = document.querySelector(".rooms");
 
 async function getAllRooms() {
-  let response = await fetch("http://localhost/php/getAllRooms.php");
+  let response = await fetch("http://localhost/php/getAllrooms.php");
   let data = await response.json();
   data.forEach((room) => {
     roomsList.append(createRooms(room));
@@ -49,13 +42,18 @@ async function getNoOfPages() {
   let data = await response.json();
   console.log(data)
   for (let i = 0; i < data; i++) {
-    let p = document.createElement("li");
-    p.classList.add("page-link");
-    p.innerHTML = i + 1;
-    document.querySelector(".change-product").append(p);
-    p.addEventListener("click", () => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    li.classList.add("page-item");
+    li.classList.add("pg");
+    a.classList.add("pg");
+    a.classList.add("page-link");
+    a.innerHTML = i + 1;
+    li.appendChild(a);
+    document.querySelector(".change-product").append(li);
+    a.addEventListener("click", () => {
       removeAllChilds(allProductDiv);
-      reqPage(p.innerHTML);
+      reqPage(a.innerHTML);
     });
   }
 }
@@ -88,19 +86,21 @@ let productCart = document.querySelector(".product-cart");
 
 function createCard(data) {
   let cartDiv = document.createElement("div");
-  cartDiv.classList.add("product", "text-center", "col-3","ms-2","mt-2");
   let img = document.createElement("img");
+  let cartBody = document.createElement("div");
+  let cartTitle = document.createElement("h5");
+  let price = document.createElement("p");
+  let addButton = document.createElement("p");
+
+  cartDiv.classList.add("product", 'card', "text-center", "ms-2", "mt-2");
+  // cartDiv.style.width = "200px!important";
   img.classList.add("card-img-top","img-fluid");
   img.setAttribute("src", data.avatar.replace(/['"]+/g, ""));
-  img.style.height="200px";
+  img.style.height = "150px";
   cartDiv.appendChild(img);
-  let cartBody = document.createElement("div");
-  cartBody.classList.add("card-body","card","rounded");
-  let cartTitle = document.createElement("h5");
+  cartBody.classList.add("card-body","rounded");
   cartTitle.innerHTML = data.name;
-  let price = document.createElement("p");
   price.innerHTML = `price: ${data.price}`;
-  let addButton = document.createElement("p");
   addButton.innerHTML = "Add To Order";
   addButton.classList.add("btn", "btn-dark");
   addButton.addEventListener("click", () => {
@@ -145,7 +145,7 @@ function calculateTotalOrder() {
 
 function createOrderCart(product) {
   let orderDiv = document.createElement("div");
-  orderDiv.classList.add("row","cart-row","justify-content-center","align-items-baseline","text-center");
+  orderDiv.classList.add("row","cart-row","justify-content-center","align-items-baseline","text-center","myCart");
   let productId = document.createElement("p");
   productId.innerHTML = product.id;
   productId.classList.add("d-none");
@@ -230,6 +230,7 @@ async function getMatchedProducts(char) {
   if (data == false) {
     document.querySelector(".response").innerHTML = "No Matched Values";
   } else {
+    document.querySelector(".response").textContent='';
     data.forEach((product) => {
       searchedProducts.appendChild(createCard(product));
       
@@ -250,15 +251,28 @@ function checkEmptyOrder() {
 }
 
 function showEmptyOrder(){
-    emptyOrder.classList.remove("alert-success");
-    emptyOrder.classList.add("alert-warning");
-    emptyOrder.innerHTML = "Your Order Is empty";
-}
+    // emptyOrder.classList.remove("alert-success");
+    // emptyOrder.classList.add("alert-warning");
+    // emptyOrder.innerHTML = "Your Order Is empty";
+  mytoastbody.innerHTML = "Your Order Is empty"
 
-function showSuccessOrder(){
-    emptyOrder.classList.remove("alert-warning");
-    emptyOrder.classList.add("alert-success");
-    emptyOrder.innerHTML = "Successful Order";
+  let toast = new bootstrap.Toast(toastLiveExample)
+  toast.show()
+}
+function showSuccessOrder() {
+  let myCart = document.querySelectorAll(".myCart");
+  
+  myCart.forEach((e) => {
+   
+    e.remove();
+  })
+    // emptyOrder.classList.remove("alert-warning");
+    // emptyOrder.classList.add("alert-success");
+    // emptyOrder.innerHTML = "Successful Order";
+  mytoastbody.innerHTML = "Order Placed Successfully "
+
+  let toast = new bootstrap.Toast(toastLiveExample)
+  toast.show()
 }
 
 confirm.addEventListener("click", () => {

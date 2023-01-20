@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("./env.php");
 require("./db.php");
 class ordersDate extends DB{
@@ -27,16 +28,17 @@ class ordersDate extends DB{
     }
 }
 $orderDateFilter= new ordersDate($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
-$userId =7;
+$userId =$_SESSION['user_id'];
 $dateFrom =$_POST['dateFrom'];
 $dateTo =$_POST['dateTo'];
  $displayOrder =$orderDateFilter->getOrdersByDate($dateFrom,$dateTo,$userId);
  if($displayOrder){
       echo json_encode(["Status" => "true" ,"data" =>$displayOrder]);
-      
- }
- else{
+    exit();
+}
+else{
     echo json_encode(["Status" => "false"]);
+    exit();
  }
   
 

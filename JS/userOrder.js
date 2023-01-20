@@ -2,11 +2,11 @@ var details = document.getElementById("cards");
 const showTotal = document.getElementsByClassName("total")[0];
 var pgul = document.querySelector(".pg");
 var tbody = document.querySelector("tbody");
-async function getUserData() {
-  let res = await fetch("http://localhost/php/7getImageAndNameOfUser.php");
-  let data = await res.json();
-  displayUserData(data);
-}
+// async function getUserData() {
+//   let res = await fetch("http://localhost/php/7getImageAndNameOfUser.php");
+//   let data = await res.json();
+//   displayUserData(data);
+// }
 function mainPagination(data) {
   for (let index = 1; index <= data; index++) {
     createPagination(index);
@@ -105,11 +105,11 @@ dateTo.addEventListener("change", () => {
     getOrdersByDate(dateFrom.value, dateTo.value);
   }
 });
-function displayUserData(resData) {
-  console.log(resData);
-  document.getElementById("img1").src = resData.avatar.replace(/['"]+/g, " ");
-  document.getElementById("MYp").innerHTML = resData.name;
-}
+// function displayUserData(resData) {
+//   console.log(resData);
+//   document.getElementById("img1").src = resData.avatar.replace(/['"]+/g, " ");
+//   document.getElementById("MYp").innerHTML = resData.name;
+// }
 function displayUserOrder(resData) {
   console.log(resData);
   resData.forEach((e) => {
@@ -198,7 +198,6 @@ function createOrderDetails(resData) {
   cardbody.classList.add("card-body", "ms-5");
   return card;
 }
-getUserData();
 getNumberOfPages();
 requestNumberPage(1);
 

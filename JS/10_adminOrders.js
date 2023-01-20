@@ -117,7 +117,8 @@ function select(obj){
     selection.append(outForDelivery);
     selection.append(done);
     selection.append(canceled);
-    if(obj.status=='done'){
+    if (['done', 'canceled'].includes(obj.status) ){
+        selection.style.border="1px red solid";
         selection.disabled=true;
     }
     return selection;
