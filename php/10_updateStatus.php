@@ -8,5 +8,5 @@ $users = new DB ($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, 
 $orderid=$_POST['orderID'];
 $orderstatus=$_POST['orderstatus'];
 $data=$users->change_order_status($orderid,$orderstatus);
-$response=["status"=>$data];
+$response=["status"=>true,"data"=>"Order is set to $orderstatus "];
 print_r(json_encode($response));

@@ -1,12 +1,12 @@
 let userName = document.getElementById("user-name");
 let userPic = document.getElementById("profile-pic");
-async function getUserData() {
-  let response = await fetch("http://localhost/php/get-user-data.php");
-  let user = await response.json();
-  userName.innerHTML = user.name;
-  userPic.setAttribute("src", user.avatar);
-}
-getUserData();
+// async function getUserData() {
+//   let response = await fetch("http://localhost/php/get-user-data.php");
+//   let user = await response.json();
+//   userName.innerHTML = user.name;
+//   userPic.setAttribute("src", user.avatar);
+// }
+// getUserData();
 
 let selectUsers = document.querySelector("#users");
 // console.log(latestOrderDiv);
@@ -43,7 +43,7 @@ getAllUsers();
 let roomsList = document.querySelector(".rooms");
 
 async function getAllRooms() {
-  let response = await fetch("http://localhost/php/getAllRooms.php");
+  let response = await fetch("http://localhost/php/getAllrooms.php");
   let data = await response.json();
   data.forEach((room) => {
     roomsList.append(createRooms(room));

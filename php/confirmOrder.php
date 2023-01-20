@@ -2,9 +2,9 @@
 //session_start();
 require("./env.php");
 require("./db.php");
-// $id=$_SESSION['user-id'];
-$orders = new DB(DATABASE, DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASS);
-$id=2;
+$id=$_SESSION['user_id'];
+$orders = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
+// $id=2;
 $data = file_get_contents('php://input');
 $data = json_decode($data, true);
 $room=$data['room'];

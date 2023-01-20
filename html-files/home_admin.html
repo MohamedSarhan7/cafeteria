@@ -12,6 +12,12 @@
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="../css/navbar.css">
+  <style>
+    .search{
+      margin-top: 150px!important;
+    }
+  </style>
 </head>
 
 <body>
@@ -20,38 +26,37 @@
     <div class="background"></div>
 
     
-  <nav class="navbar">
+  <nav class="navbar ">
     <ul class="links">
-      <li><img class="logo" src="../images/Asset 3.svg" alt="" /></li>
+      <li><img class="logo" src="../images/logo.png" alt=""></li>
       <li>
         <ul class="linksul">
-          <li><a class="linksli" href="http://localhost/html-files/home.html">Home</a></li>
-          <li><a class="linksli" href="http://localhost/html-files/myOrders.html">My Orders</a></li>
+          <li><a class="linksli" onclick="Home()">Home</a></li>
+          <li><a class="linksli" onclick="Products()">Products</a> </li>
+          <li><a class="linksli" onclick="Users()">Users</a> </li>
+          <li><a class="linksli" onclick="Manage()">Manage Orders</a> </li>
+          <li><a class="linksli" onclick="Checks()">Checks</a> </li>
         </ul>
       </li>
     </ul>
     <ul class="brand">
       <li class="brandli">
         <ul class="user">
+          <li><img class="user_image" src="../images/user/admin.png" alt=""></li>
           <li>
-            <img src="" alt="" id="profile-pic" />
-          </li>
-          <li>
-            <p id="user-name"></p>
+            <p class="user_name">Admin</p>
           </li>
         </ul>
       </li>
       <li class="brandli">
-        <button type="button" class="btn btn-outline-light">Log out</button>
+        <button type="button" onclick="logout()" class="btn btn-outline-light">Log out</button>
       </li>
     </ul>
   </nav>
+
   <div class="container mt-3  search">
     <div class="row justify-content-center align-items-center"><input class="search-bar form-control w-75  col-2"
         type="search" placeholder="Search" aria-label="Search"> </div>
-
-
-
 
   </div>
   <!-- <div class="response"></div> -->
@@ -108,6 +113,7 @@
   </div>
 
   <div class="alert empty-order" role="alert"></div>
+    <script src="../JS/get_user_data.js"></script>
 
   <script src="../JS/navBar.js"></script>
         <script src="../JS/logout.js"></script>

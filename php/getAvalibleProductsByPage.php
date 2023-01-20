@@ -30,6 +30,6 @@ class avaliableProducts extends DB {
 }
 
 
-$products=new avaliableProducts(DATABASE, DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASS);
+$products=new avaliableProducts($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 $allRows = $products->selectAvaliblepage("product",$pageNo,"status='avaliable'");
 echo json_encode($allRows);

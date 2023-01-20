@@ -17,6 +17,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="../css/all_products.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <title>Document</title>
     <style>
         .hidden-form {
@@ -111,6 +112,9 @@
             z-index: 100;
 
         }
+        .parent{
+            margin-top: 150px!important;
+        }
 
         #form-img {
             position: absolute;
@@ -146,39 +150,40 @@
 
     <nav class="navbar ">
         <ul class="links">
-          <li><img class="logo" src="../images/logo.png" alt=""></li>
-          <li>
-            <ul class="linksul">
-              <li><a class="linksli" onclick="Home()" >Home</a></li>
-              <li><a class="linksli" onclick="Products()" >Products</a> </li>
-              <li><a class="linksli" onclick="Users()" >Users</a> </li>
-              <li><a class="linksli" onclick="Manage()" >Manage Orders</a> </li>
-              <li><a class="linksli" onclick="Checks()" >Checks</a> </li>
-            </ul>
-          </li>
+            <li><img class="logo" src="../images/logo.png" alt=""></li>
+            <li>
+                <ul class="linksul">
+                    <li><a class="linksli" onclick="Home()">Home</a></li>
+                    <li><a class="linksli" onclick="Products()">Products</a> </li>
+                    <li><a class="linksli" onclick="Users()">Users</a> </li>
+                    <li><a class="linksli" onclick="Manage()">Manage Orders</a> </li>
+                    <li><a class="linksli" onclick="Checks()">Checks</a> </li>
+                </ul>
+            </li>
         </ul>
         <ul class="brand">
-          <li class="brandli">
-            <ul class="user">
-              <li><img class="user_image" src="../images/user/admin.png" alt=""></li>
-              <li>
-                <p class="user_name">Admin</p>
-              </li>
-            </ul>
-          </li>
-          <li class="brandli">
-            <button type="button" onclick="logout()" class="btn btn-outline-light">Log out</button>
-          </li>
+            <li class="brandli">
+                <ul class="user">
+                    <li><img class="user_image" src="../images/user/admin.png" alt=""></li>
+                    <li>
+                        <p class="user_name">Admin</p>
+                    </li>
+                </ul>
+            </li>
+            <li class="brandli">
+                <button type="button" onclick="logout()" class="btn btn-outline-light">Log out</button>
+            </li>
         </ul>
-      </nav>
+    </nav>
 
 
-    <div class="mt-1 d-flex w-100 justify-content-center">
+    <div class="mt-1 d-flex w-100 justify-content-center parent">
         <p class="text-light display-5">All Products</p>
-        
+
     </div>
-    <div class="container"><a class="btn btn-outline-light" href="http://localhost/php/add_product.html">Add product</a></div>
-    
+    <div class="container"><a class="btn btn-outline-light" href="http://localhost/html-files/addProduct.html">Add product</a>
+    </div>
+
 
     <div class="container shadow py-2 rounded">
         <section class="table-responsive">
@@ -227,44 +232,20 @@
                     </div>
                     <div class="input col-6">
                         <label for="category" class="form-label text-light">Category</label>
-                        <select class="form-select" id="category" name="category"
-                            ></select>
+                        <select class="form-select" id="category" name="category">
+                        </select>
                         <div class="invalid-feedback">
                         </div>
 
                     </div>
                     <div class="col-6">
                         <label for="price" class="form-label text-light">Price</label>
-                        <input type="number"  min="1" class="form-control" id="price" name="price"
-                            placeholder="Price">
+                        <input type="number" min="1" class="form-control" id="price" name="price" placeholder="Price">
                         <div class="invalid-feedback">
                         </div>
 
                     </div>
-                    <!-- <div class="col-6 ">
-
-                        <label for="changepass" class="form-label text-light">Click to change password</label>
-                        <input class="form-check-input" type="checkbox" id="changepass">
-                    </div>
-                    <div class="input col-6 d-none">
-                        <label for="password" class="form-label text-light">Password</label>
-                        <input type="password" class="form-control" name="password" id="password"
-                            placeholder="at least 8 chars">
-                        <div class="invalid-feedback">
-
-                        </div>
-
-                    </div> -->
-                    <!-- <div class="input col-6 d-none">
-                        <label for="confirm_password" class="form-label text-light">Confirm Password</label>
-                        <input type="password" class="form-control" name="confirm_password" id="confirm_password"
-                            placeholder="">
-                        <div class="invalid-feedback">
-
-                        </div>
-
-                    </div> -->
-
+                   
                     <div class="col-6 ">
 
                         <label for="changeavatar" class="form-label text-light">Click to change avatar</label>
@@ -287,16 +268,26 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="alert alert-success text-center w-25 d-none added" role="alert">
-            A simple success alert—check it out!
+    <div class="toast-container position-fixed bottom-0 end-0 p-3  mytoast">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+    
+                <strong class="me-auto">Voilà</strong>
+    
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastbody">
+                Hello, world! This is a toast message.
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-        <script src="../JS/navBar.js"></script>
-        <script src="../JS/logout.js"></script>
+    <script src="../JS/get_user_data.js"></script>
+
+    <script src="../JS/navBar.js"></script>
+    <script src="../JS/logout.js"></script>
     <script src="../JS/all_products.js" type="module"></script>
 </body>
 

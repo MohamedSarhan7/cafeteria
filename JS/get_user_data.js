@@ -11,7 +11,7 @@ async function get_user_data (){
         image.setAttribute("src", data['data'].avatar.replace(/['"]+/g, ''));
     }else{
 
-        console.log(data);
+
         window.location.href="http://localhost/html-files/login.html";
     }
 }

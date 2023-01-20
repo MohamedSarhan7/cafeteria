@@ -194,7 +194,7 @@ class DB
     public function change_order_status($id, $status)
     {
 
-        $valid_status = ['done', 'out_for_delivery'];
+        $valid_status = ['done', 'out_for_delivery', 'canceled'];
         if (in_array($status, $valid_status)) {
 
             $order = $this->select_one_row("orders", "id=$id");

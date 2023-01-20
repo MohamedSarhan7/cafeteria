@@ -3,7 +3,7 @@ require_once("./env.php");
 // require_once("./checksDB.php");
 //require_once("./valid_user.php");
 require ("./db.php");
-$db = new DB(DATABASE, DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASS);
+$db = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 $errors = [];
 $response = [];
 $update=[];
@@ -49,14 +49,15 @@ if ($_FILES) {
 
 
 
+$update['name'] = $username;
 
 //check for name is all alphabetic 
-if (ctype_alpha($username)) {
-    $update['name']=$username;
-}
-else {
-    $errors['name']="name is not valid";
-}
+// if (ctype_alpha($username)) {
+//     $update['name']=$username;
+// }
+// else {
+//     $errors['name']="name is not valid";
+// }
 
 //check for empty values
 
