@@ -14,7 +14,7 @@ async function sendrequest(page){
     });
     let data=await res.json();
     body.textContent="";
-    console.log(data);
+    
     mainpulateResp(data);
 }
 
@@ -33,7 +33,7 @@ async function get_order_details(id){
     const tp =document.createElement("p");
     let t=document.querySelector(".total");
     t.appendChild(tp);
-    console.log(t);
+
 
 }
 
@@ -66,7 +66,7 @@ async function getstatus(id,orderStatus){
 
 // append to the table
 function mainpulateResp(resData){
-    console.log(resData);
+   
     resData.forEach(e => {
         const row=createTR(e);
             body.append(row);
@@ -87,7 +87,7 @@ status.innerHTML=obj.status;
 const Action =document.createElement("td");
 let sel= select(obj);
 sel.addEventListener("change",()=>{
-    console.log(sel.value);
+
     getstatus(obj.order_id,sel.value);
     sendrequest();   
 });
@@ -144,7 +144,7 @@ var details = document.querySelector("#card");
 
 function displayOrderDetails(resData) {
     details.innerHTML = "";
-    console.log(resData);
+    
     resData.forEach((e) => {
         total.innerHTML="total price "+e.total_price;
         total.classList.add("display-5");
@@ -169,7 +169,7 @@ function createOrderDetailes(obj) {
     price.innerText = "Price : " + obj.price;
     productName.innerText = obj.name;
     img.setAttribute("src", obj.avatar.replace(/['"]+/g, ''));
-    console.log(img);
+ 
     img.style.height="200px";
     const card = document.createElement("div");
     card.appendChild(img);
