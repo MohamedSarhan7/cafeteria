@@ -209,3 +209,6 @@ focus {
 .card-title {
     font-size: x-large;
 }
+a:hover {
+    cursor: pointer !important;
+}

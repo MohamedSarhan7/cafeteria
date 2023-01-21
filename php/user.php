@@ -4,7 +4,7 @@ require_once("./env.php");
 require_once("./db.php");
 
 $response = [];
-if ($_SESSION['user_id']) {
+if (isset($_SESSION['user_id'])) {
     $id=$_SESSION['user_id'];
     $db = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
     $user = $db->select_one_row("user", "id = $id ");

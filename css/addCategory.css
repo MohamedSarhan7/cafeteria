@@ -1,3 +1,6 @@
 .active {
     display: block !important;
   }
+    a:hover {
+      cursor: pointer !important;
+    }

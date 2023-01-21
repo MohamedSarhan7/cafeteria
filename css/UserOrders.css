@@ -148,3 +148,7 @@ li
 .fa-youtube{
     color: rgb(186, 13, 13);
 }
+
+a:hover {
+    cursor: pointer !important;
+}

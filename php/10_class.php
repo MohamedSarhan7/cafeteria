@@ -3,17 +3,21 @@
  require_once("./db.php");
 
  class adminOrders extends DB{
+    protected $rows_per_page = 4;
 
      public function __construct($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD)
      {
          parent::__construct($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
      }
 
-     public function selectorderdateusername(){
+     public function selectorderdateusername($page){
         try{
+            $offset = $this->rows_per_page * ($page - 1);
            $query= "SELECT  user.name  as 'user_name', orders.created_at , orders.id as 'order_id', orders.room, orders.status
            from user  join orders 
-            on  user.id=orders.userid order by orders.created_at desc;";
+            on  user.id=orders.userid 
+            order by orders.created_at desc
+            limit $this->rows_per_page offset $offset ;";
            $sql = $this->connection->prepare($query);
                     $result = $sql->execute();
                     $result = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -25,6 +29,26 @@
                     return $e->getMessage();
                 }
             }
+    public function GetNumberOFOrdersPage()
+    {
+        try {
+
+            $query = "SELECT count(orders.id)  as'total_rows' from orders ;";
+            $sql = $this->connection->prepare($query);
+            $result = $sql->execute();
+            $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+            if (empty($result)) {
+                return false;
+            }
+            $result = $result[0]['total_rows'] / $this->rows_per_page;
+            return ceil($result);
+        } catch (Throwable $e) {
+            return $e->getMessage();
+        }
+    }
+
+            
+
     ////////////////////////////////////////////////////
             public function popo($col_name1,$col_name2,$col_name3,$col_name4,$tablename1,$tablename2,$condition){
                 try{

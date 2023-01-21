@@ -1,11 +1,20 @@
 let body=document.querySelector("tbody");
 const toastLiveExample = document.getElementById('liveToast')
 let mytoastbody = document.querySelector("#toastbody");
+
 // get all orders
-async function sendrequest(){
-    let res=await fetch("http://localhost/php/10_adminOrders.php");
+
+
+async function sendrequest(page){
+    let formdata = new FormData();
+    formdata.append("page", page);
+    let res=await fetch("http://localhost/php/10_adminOrders.php",{
+        method:"POST",
+        body:formdata,
+    });
     let data=await res.json();
     body.textContent="";
+    console.log(data);
     mainpulateResp(data);
 }
 
@@ -57,6 +66,7 @@ async function getstatus(id,orderStatus){
 
 // append to the table
 function mainpulateResp(resData){
+    console.log(resData);
     resData.forEach(e => {
         const row=createTR(e);
             body.append(row);
@@ -87,6 +97,7 @@ showbutton.innerHTML="Show";
 showbutton.classList.add("btn-outline-light","btn");
 show.append(showbutton);
 showbutton.addEventListener("click",()=>{
+    document.getElementById("ddd").classList.remove("d-none");
     get_order_details(obj.order_id);
 })
 const row=document.createElement("tr");
@@ -203,7 +214,48 @@ function createOrderDetailes2(obj) {
     return card
 }
 
-sendrequest();
+
+async function getTotalNumberOfPages(){
+    let res = await fetch("http://localhost/php/10_get_total_number_of_pages.php");
+    let data =await res.json();
+    body.textContent = "";
+    mainPagination(data);
+    if (data >= 1) {
+        sendrequest(1);
+    }
+}
+
+function mainPagination(data) {
+    for (let index = 1; index <= data; index++) {
+        createPagination(index);
+
+    }
+
+}
+
+const pagenationUL = document.querySelector(".pg");
+function createPagination(obj) {
+   
+
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    li.classList.add("page-item");
+    li.classList.add("pg");
+    a.classList.add("pg");
+    a.classList.add("page-link");
+    a.innerHTML = obj;
+    a.addEventListener("click", () => {
+        //     send your request her
+        //  and delete this
+        document.getElementById("ddd").classList.add("d-none");
+        sendrequest(a.innerHTML);
+    })
+    li.appendChild(a);
+    pagenationUL.appendChild(li);
+
+}
+getTotalNumberOfPages();
+// sendrequest();
 
 let tbody=document.getElementById("tb");
 tbody.lastChild;

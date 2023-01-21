@@ -126,5 +126,11 @@ option{
 .card-title{
     font-size: x-large;
 }
-
+.pg {
+    background-color: rgba(34, 16, 7, 0.027) !important;
+    color: beige !important;
+}
+a:hover{
+    cursor: pointer!important;
+}
 

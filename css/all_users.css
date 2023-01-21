@@ -224,3 +224,7 @@ td img {
 .parent {
     margin-top: 120px !important;
 }
+
+a:hover {
+    cursor: pointer !important;
+}

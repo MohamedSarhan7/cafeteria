@@ -10,3 +10,6 @@ label {
 .parent {
   margin-top: 80px !important;
 }
+a:hover {
+  cursor: pointer !important;
+}
