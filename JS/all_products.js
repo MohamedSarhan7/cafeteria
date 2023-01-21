@@ -163,7 +163,7 @@ function createUserTable(obj) {
 async function getTotalNumberOfPages() {
     let res = await fetch("http://localhost/php/AllProducts2.php");
     let data = await res.json();
-    mainPagination(Math.ceil(data));
+    mainPagination(data);
     console.log(data);
     if (data >= 1) {
         getAllUsers(1);

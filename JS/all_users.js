@@ -271,7 +271,7 @@ Form.addEventListener("submit", (e) => {
         "email": email.value,
         "room": room.value
     }
-    let avatarFlag
+    let avatarFlag;
     if (changeAvatar.checked) {
         user['avatar'] = avatar.value;
         avatarFlag = true;
@@ -308,8 +308,7 @@ function getdata(user, id, avatarFlag, avatar) {
         formdata.append(key, user[key]);
     }
     if (avatarFlag) {
-
-        formdata.append('avatar', avatar);
+        formdata.append('avatar', avatar.files[0]);
     }
     formdata.append('user_id', id);
     return formdata;

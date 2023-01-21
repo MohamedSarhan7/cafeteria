@@ -38,7 +38,7 @@ foreach ($_POST as $key => $value) {
     $room = $_POST["room"];
     $email = $_POST['email'];
 
-    if ($_POST['password']) {
+    if (isset($_POST['password'])) {
         $password = $_POST["password"];
         $password_confirm = $_POST["confirm_password"];
         checkPassoword($password, $password_confirm, $errors);

@@ -12,7 +12,7 @@ async function get_user_data (){
     }else{
 
 
-        window.location.href="http://localhost/html-files/login.html";
+        window.location.href="http://localhost/index.html";
     }
 }
 

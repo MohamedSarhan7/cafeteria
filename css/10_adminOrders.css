@@ -134,3 +134,10 @@ a:hover{
     cursor: pointer!important;
 }
 
+.sel{
+        background-color: transparent;
+    opacity: 100%;
+        color: beige !important;
+        font-family: 'Poppins', sans-serif !important;
+        font-weight: 500 !important;
+}

@@ -15,6 +15,7 @@ function mainPagination(data) {
 async function getNumberOfPages() {
   let response = await fetch("http://localhost/php/7getNumberOfOrderPage.php");
   let data = await response.json();
+
   mainPagination(data);
 }
 function createPagination(obj) {
@@ -31,7 +32,7 @@ function createPagination(obj) {
     requestNumberPage(a.innerHTML);
   });
   li.appendChild(a);
-  console.log(li);
+ 
   pgul.appendChild(li);
 }
 async function requestNumberPage(pageNumber) {
@@ -63,7 +64,7 @@ async function showTotalPriceOrder(userid) {
     body: sendId,
   });
   let data = await res.json();
-  console.log(data);
+
   displayTotal(data);
 }
 async function cancelOrder(id) {
@@ -101,7 +102,7 @@ dateFrom.addEventListener("change", () => {
 });
 dateTo.addEventListener("change", () => {
   if (dateFrom.value != "") {
-    console.log(dateFrom.value);
+ 
     getOrdersByDate(dateFrom.value, dateTo.value);
   }
 });
@@ -111,7 +112,7 @@ dateTo.addEventListener("change", () => {
 //   document.getElementById("MYp").innerHTML = resData.name;
 // }
 function displayUserOrder(resData) {
-  console.log(resData);
+ 
   resData.forEach((e) => {
     const row = createRow(e);
     tbody.append(row);
@@ -119,7 +120,7 @@ function displayUserOrder(resData) {
 }
 function displayOrderDetails(resData) {
   details.innerHTML = "";
-  console.log(resData);
+
   resData.forEach((e) => {
     const row = createOrderDetails(e);
     details.style.display = "block";
@@ -128,7 +129,7 @@ function displayOrderDetails(resData) {
   showTotalPriceOrder(resData.userid);
 }
 function displayTotal(resData) {
-  console.log(resData);
+
   const totalOrderPrice = document.createElement("p");
   showTotal.innerHTML = "";
   resData.forEach((e) => {
@@ -184,7 +185,7 @@ function createOrderDetails(resData) {
   price.innerText = "Price : " + resData.price;
   productName.innerText = resData.name;
   img.setAttribute("src", resData.avatar.replace(/['"]+/g, ""));
-  console.log(img);
+
   img.style.height = "200px";
   const cardbody = document.createElement("div");
   const card = document.createElement("div");

@@ -55,7 +55,11 @@ a:hover{
     position: sticky;
 
 }
-
+/* =========================================================== */
+/* = */                                                   /* = */
+/* = */               /* By Olaa */                       /* = */
+/* = */                                                   /* = */
+/* =========================================================== */
 .ulaa {
     display: flex;
     list-style: none;
@@ -161,22 +165,22 @@ label {
 
 /* =============== */
 /* Removes the clear button from date inputs */
-input[type="date"]::-webkit-clear-button {
+/* input[type="date"]::-webkit-clear-button {
     display: none;
-}
+} */
 
 /* Removes the spin button */
-input[type="date"]::-webkit-inner-spin-button {
+/* input[type="date"]::-webkit-inner-spin-button {
     display: none;
-}
+} */
 
 /* Always display the drop down caret */
-input[type="date"]::-webkit-calendar-picker-indicator {
+/* input[type="date"]::-webkit-calendar-picker-indicator {
     color: #2c3e50;
-}
+} */
 
 /* A few custom styles for date inputs */
-input[type="date"] {
+/* input[type="date"] {
     appearance: none;
     -webkit-appearance: none;
     color: #95a5a6;
@@ -195,7 +199,7 @@ focus {
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-}
+} */
 
 .card {
     width: 200px;
@@ -211,4 +215,32 @@ focus {
 }
 a:hover {
     cursor: pointer !important;
+}
+
+input[type="date"],
+focus {
+    color: #95a5a6;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    background-color: transparent;
+    border-radius: 10px;
+    border-color: beige;
+}
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: "Helvetica", arial, sans-serif;
+    font-size: 18px;
+    border: 1px solid beige;
+    padding: 5px;
+    display: inline-block !important;
+    visibility: visible !important;
+}
+.orders {
+    margin-top: 150px;
+    text-align: center;
+    margin-bottom: 10px!important;
+    color: beige;
+    font-family: 'Poppins', serif;
 }

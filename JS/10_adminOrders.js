@@ -51,7 +51,7 @@ async function getstatus(id,orderStatus){
     );
     let data = await res.json();
     if(data['status']==true){
-        sendrequest();
+        sendrequest(1);
         setTimeout(()=>{
 
             mytoastbody.innerHTML = data['data'];
@@ -86,10 +86,11 @@ const status =document.createElement("td");
 status.innerHTML=obj.status;
 const Action =document.createElement("td");
 let sel= select(obj);
+    Action.append(sel);
 sel.addEventListener("change",()=>{
 
     getstatus(obj.order_id,sel.value);
-    sendrequest();   
+    sendrequest(1);   
 });
 const show=document.createElement("td");
 const showbutton=document.createElement("button");
@@ -105,7 +106,7 @@ row.append(CA);
 row.append(user);
 row.append(room);
 row.append(status);
-row.append(sel);
+row.append(Action);
 row.append(show);
 return row;
 }
@@ -116,6 +117,7 @@ function select(obj){
     var outForDelivery =document.createElement("option");
     var done = document.createElement("option");
     var canceled = document.createElement("option");
+    selection.classList.add("sel");
     // canceled
     selection.innerHTML=`<option selected>change status</option>`;
     outForDelivery.innerHTML = 'out for delivery';
