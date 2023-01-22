@@ -137,7 +137,7 @@ function displayTotal(resData) {
   const totalOrderPrice = document.createElement("p");
   showTotal.innerHTML = "";
   resData.forEach((e) => {
-    totalOrderPrice.innerHTML = "Total_Price: " + e.total;
+    totalOrderPrice.innerHTML = "Total : " + e.total +"$";
     totalOrderPrice.style.color = "white";
     showTotal.append(totalOrderPrice);
   });

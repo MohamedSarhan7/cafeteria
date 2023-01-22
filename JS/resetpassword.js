@@ -19,7 +19,7 @@ async function setPassword(pass) {
         confPassErrorMessage.style.display = 'block';
     }
     else {
-        window.location.href = "http://localhost/html-files/login.html";
+        window.location.href = "http://localhost/indedx.html";
     }
 }
 

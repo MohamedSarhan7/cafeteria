@@ -96,7 +96,7 @@ async function setPassword(pass,confPass,vaild) {
     confPassErrorMessage.style.display = 'block';
   }
   else {
-    window.location.href = "http://localhost/html-files/login.html";
+    window.location.href = "http://localhost/index.html";
   }
 }
 
