@@ -28,6 +28,7 @@ function createPagination(obj) {
   a.innerHTML = obj;
   a.classList.add("bg-transparent", "text-light", "border-black");
   a.addEventListener("click", () => {
+    details.innerHTML = '';
     document.querySelector("tbody").innerHTML = "";
     requestNumberPage(a.innerHTML);
   });
@@ -88,9 +89,12 @@ async function getOrdersByDate(dateFrom, dateTo) {
   let data = await res.json();
   if(data["Status"] == "true"){
    tbody.textContent="";
+    details.innerHTML ='';
     displayUserOrder(data["data"]);
   }else{
     tbody.textContent="";
+    details.innerHTML = '';
+
   }
 }
 let dateFrom = document.getElementById("from");
