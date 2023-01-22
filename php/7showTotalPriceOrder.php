@@ -7,7 +7,7 @@ $con = new PDO($sql,$DATABASE_USERNAME,$DATABASE_PASSWORD);
 $user_id = $_POST['userID'];
 $user_id=$_SESSION['user_id'];
 
-$query = "SELECT SUM(total_price) as total from orders where userid= $user_id;";
+$query = "SELECT SUM(total_price) as total from orders where status <> 'canceled' and  userid= $user_id;";
 $sql = $con->prepare($query);
 $sql->execute();
 $user = $sql->fetchall();
