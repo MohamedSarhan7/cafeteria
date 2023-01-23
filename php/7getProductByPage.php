@@ -31,5 +31,5 @@ session_start();
 $orders = new DB($DATABASE, $DATABASE_HOST, $DATABASE_NAME, $DATABASE_USERNAME, $DATABASE_PASSWORD);
 $pageNo = $_POST['Page_No'];
 $userId = $_SESSION['user_id'];
-$allRows = $orders->selectpage("orders where userid = $userId ",$pageNo);
+$allRows = $orders->selectpage("orders where userid = $userId order by created_at desc ",$pageNo);
 echo json_encode($allRows);

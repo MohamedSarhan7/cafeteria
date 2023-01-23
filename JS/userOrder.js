@@ -126,7 +126,7 @@ function displayOrderDetails(resData) {
   details.innerHTML = "";
 
   resData.forEach((e) => {
-    const row = createOrderDetails(e);
+    const row = createOrderDetailes2(e);
     details.style.display = "block";
     details.append(row);
   });
@@ -202,6 +202,39 @@ function createOrderDetails(resData) {
   img.classList.add("card-img-top", "ps-5");
   cardbody.classList.add("card-body", "ms-5");
   return card;
+}
+
+
+
+function createOrderDetailes2(obj) {
+  const card = document.createElement("div");
+  const cardbody = document.createElement("div");
+  const productName = document.createElement("p");
+  const img = document.createElement("img");
+  const price = document.createElement("p");
+  const quantity = document.createElement("p");
+
+  card.classList.add("card", "m-3");
+  cardbody.classList.add("card-body", "rounded");
+  productName.classList.add("card-title");
+  price.classList.add("card-text");
+  quantity.classList.add("card-text");
+  img.classList.add("card-img-top");
+
+  quantity.innerHTML = "Quantity :" + obj.qty;
+  price.innerText = "Price : " + obj.price;
+  productName.innerText = obj.name;
+  img.setAttribute("src", obj.avatar.replace(/['"]+/g, ''));
+  img.style.height = "150px";
+  // cardbody.classList.add("card-body");
+
+
+  card.appendChild(img);
+  card.appendChild(cardbody);
+  cardbody.appendChild(productName);
+  cardbody.appendChild(price);
+  cardbody.appendChild(quantity);
+  return card
 }
 getNumberOfPages();
 requestNumberPage(1);
